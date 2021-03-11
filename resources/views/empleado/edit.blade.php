@@ -2,7 +2,7 @@
 @csrf
 {{ method_field('PATCH') }}
 
-@include('empleado.form')
+@include('empleado.form',['modo'=>'readonly disabled'])
 
 </form>
 

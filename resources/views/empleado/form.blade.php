@@ -1,5 +1,5 @@
 <label for="Documento">Documento</label>
-<input type="text" name="Documento" id="Documento" value="{{ isset($empleado->documento)?$empleado->documento:'' }}">
+<input type="text" name="Documento" id="Documento" value="{{ isset($empleado->documento)?$empleado->documento:'' }}" {{$modo}} >
 <br>
 
 <label for="Primer_nombre">Primer nombre</label>
