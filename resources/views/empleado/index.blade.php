@@ -1,3 +1,5 @@
+<a href="{{ url('empleado/create') }}">Nuevo empleado</a>
+
 <table class="table table-light">
 
     <thead class="thead-light">
@@ -33,8 +35,14 @@
             <td>{{ $empleado->grupo_sanguineo }}</td>
             <td>{{ $empleado->id_sede }}</td>
             <td>{{ $empleado->id_rol }}</td>
-            <td>Editar
+            <td>
+
+            <a href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
             
+                Editar
+            
+            </a>
+            |
             <form action="{{ url('/empleado/'.$empleado->documento) }}" method="post"> 
             @csrf  
 
