@@ -40,8 +40,8 @@
             <td>{{ $empleado->correo }}</td>
             <td>{{ $empleado->contraseña }}</td>
             <td>{{ $empleado->grupo_sanguineo }}</td>
-            <td>{{ $empleado->id_sede }}</td>
-            <td>{{ $empleado->id_rol }}</td>
+            <td>{{ $empleado->sedeEmpleado->nombre_sede }}</td>
+            <td>{{ $empleado->rolEmpleado->nombre_rol }}</td>
             <td>
 
             <a href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
