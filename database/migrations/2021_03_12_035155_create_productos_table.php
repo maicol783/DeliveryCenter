@@ -14,7 +14,10 @@ class CreateProductosTable extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_producto');
+            $table->string('nombre',30)->unique();
+            $table->integer('stock');
+            $table->decimal('valor_producto', $precision = 8, $scale = 2);
             $table->timestamps();
         });
     }

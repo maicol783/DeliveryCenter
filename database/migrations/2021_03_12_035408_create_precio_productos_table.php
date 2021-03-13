@@ -14,7 +14,12 @@ class CreatePrecioProductosTable extends Migration
     public function up()
     {
         Schema::create('precio_productos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id_precioProducto');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->decimal('valor_producto', $precision = 8, $scale = 2);
+            $table->integer('id_producto')->unsigned();
+            $table->foreign('id_producto')->references('id_producto')->on('productos');
             $table->timestamps();
         });
     }
