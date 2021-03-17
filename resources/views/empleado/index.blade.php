@@ -1,50 +1,61 @@
+@extends('adminlte::page')
+@section('title', 'Empleados')
+@section('content_header')
+    <h1>Empleados</h1>
+@stop
+@section('content')
+
 @if(Session::has('mensaje'))
 
     {{ Session::get('mensaje') }}
 
 @endif
 
+<div class="table-responsive">
 
-<a href="{{ url('empleado/create') }}">Nuevo empleado</a>
+<div>
+<a class="btn btn-success" href="{{ url('empleado/create') }}">Nuevo empleado</a>
+</div>
+<br>
 
-<table class="table table-light">
+<table class="table table-striped table-bordered table-hover" style="width: 100%">
 
-    <thead class="thead-light">
+    <thead class="">
         <tr>
-            <th>Documento</th>
-            <th>Primer nombre</th>
-            <th>Segundo nombre</th>
-            <th>Primer apellido</th>
-            <th>Segundo apellido</th>
-            <th>Celular</th>
-            <th>Telefono</th>
-            <th>Correo</th>
-            <th>Contraseña</th>
-            <th>Grupo sanguineo</th>
-            <th>Sede</th>
-            <th>Rol</th>
-            <th>Acciones</th>
+            <th class="text-center">Documento</th>
+            <th class="text-center">Primer nombre</th>
+            <th class="text-center">Segundo nombre</th>
+            <th class="text-center">Primer apellido</th>
+            <th class="text-center">Segundo apellido</th>
+            <th class="text-center">Celular</th>
+            <th class="text-center">Telefono</th>
+            <th class="text-center">Correo</th>
+            <th class="text-center">Contraseña</th>
+            <th class="text-center">Grupo sanguineo</th>
+            <th class="text-center">Sede</th>
+            <th class="text-center">Rol</th>
+            <th class="text-center" width="20%">Acciones</th>
         </tr>
     </thead>
 
     <tbody>
     @foreach($empleados as $empleado)
         <tr>
-            <td>{{ $empleado->documento }}</td>
-            <td>{{ $empleado->primer_nombre }}</td>
-            <td>{{ $empleado->segundo_nombre }}</td>
-            <td>{{ $empleado->primer_apellido }}</td>
-            <td>{{ $empleado->segundo_apellido }}</td>
-            <td>{{ $empleado->celular }}</td>
-            <td>{{ $empleado->telefono }}</td>
-            <td>{{ $empleado->correo }}</td>
-            <td>{{ $empleado->contraseña }}</td>
-            <td>{{ $empleado->grupo_sanguineo }}</td>
-            <td>{{ $empleado->sedeEmpleado->nombre_sede }}</td>
-            <td>{{ $empleado->rolEmpleado->nombre_rol }}</td>
-            <td>
+            <td class="text-center">{{ $empleado->documento }}</td>
+            <td class="text-center">{{ $empleado->primer_nombre }}</td>
+            <td class="text-center">{{ $empleado->segundo_nombre }}</td>
+            <td class="text-center">{{ $empleado->primer_apellido }}</td>
+            <td class="text-center">{{ $empleado->segundo_apellido }}</td>
+            <td class="text-center">{{ $empleado->celular }}</td>
+            <td class="text-center">{{ $empleado->telefono }}</td>
+            <td class="text-center">{{ $empleado->correo }}</td>
+            <td class="text-center">{{ $empleado->contraseña }}</td>
+            <td class="text-center">{{ $empleado->grupo_sanguineo }}</td>
+            <td class="text-center">{{ $empleado->sedeEmpleado->nombre_sede }}</td>
+            <td class="text-center" style = "width:50px">{{ $empleado->rolEmpleado->nombre_rol }}</td>
+            <td class="text-center">
 
-            <a href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
+            <a class="btn btn-warning btn-sm" href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
             
                 Editar
             
@@ -54,7 +65,7 @@
             @csrf  
 
                 {{ method_field('DELETE') }} 
-                <input type="submit" onclick="return confirm('¿Esta seguro de eliminar este usuario?')" value="Borrar">
+                <input  class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Esta seguro de eliminar este usuario?')" value="Borrar">
             
             </form>
             
@@ -64,3 +75,5 @@
     </tbody>
 
 </table>
+</div>
+@stop
