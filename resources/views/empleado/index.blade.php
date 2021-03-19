@@ -3,13 +3,9 @@
 @section('content_header')
     <h1>Empleados</h1>
 @stop
+@section('plugins.Sweetalert2', true)
 @section('content')
 
-@if(Session::has('mensaje'))
-
-    {{ Session::get('mensaje') }}
-
-@endif
 
 <div class="table-responsive">
 
@@ -34,7 +30,7 @@
             <th class="text-center">Grupo sanguineo</th>
             <th class="text-center">Sede</th>
             <th class="text-center">Rol</th>
-            <th class="text-center" width="20%">Acciones</th>
+            <th class="text-center" width="100px">Acciones</th>
         </tr>
     </thead>
 
@@ -52,7 +48,7 @@
             <td class="text-center">{{ $empleado->contraseña }}</td>
             <td class="text-center">{{ $empleado->grupo_sanguineo }}</td>
             <td class="text-center">{{ $empleado->sedeEmpleado->nombre_sede }}</td>
-            <td class="text-center" style = "width:50px">{{ $empleado->rolEmpleado->nombre_rol }}</td>
+            <td class="text-center">{{ $empleado->rolEmpleado->nombre_rol }}</td>
             <td class="text-center">
 
             <a class="btn btn-warning btn-sm" href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
@@ -61,11 +57,11 @@
             
             </a>
             |
-            <form action="{{ url('/empleado/'.$empleado->documento) }}" method="post"> 
+            <form action="{{ url('/empleado/'.$empleado->documento) }}" class="formulario-eliminar" method="post"> 
             @csrf  
 
                 {{ method_field('DELETE') }} 
-                <input  class="btn btn-danger btn-sm" type="submit" onclick="return confirm('¿Esta seguro de eliminar este usuario?')" value="Borrar">
+                <input  class="btn btn-danger btn-sm" type="submit"  value="Borrar">
             
             </form>
             
@@ -76,4 +72,56 @@
 
 </table>
 </div>
+
+@section('js')
+    <script>
+
+    $('.formulario-eliminar').submit(function(e){
+        e.preventDefault();
+
+    Swal.fire({
+  title: '¿Estas seguro de eliminar este empleado?',
+  text: "¡No lo puedes revertir!",
+  icon: 'question',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: '¡Si, eliminar!',
+  cancelButtonText: '¡Cancelar!'
+}).then((result) => {
+  if (result.value) {
+    this.submit();
+  }
+})
+});
+    
+     </script>
+@if(Session('mensaje') == 'oke')
+<script>
+Swal.fire(
+  '¡Eliminado!',
+  'El usuario se ha eliminado correctamente.',
+  'success'
+)
+</script>
+@endif
+@if(Session('mensaje') == 'okm')
+<script>
+Swal.fire(
+  '¡Editado!',
+  'El usuario se ha editado correctamente.',
+  'success'
+)
+</script>
+@endif
+@if(Session('mensaje') == 'okc')
+<script>
+Swal.fire(
+  '¡Creado!',
+  'El usuario se ha creado correctamente.',
+  'success'
+)
+</script>
+@endif
+@stop
 @stop

@@ -41,7 +41,7 @@ class EmpleadoController extends Controller
         $datosEmpleado = request()->except('_token','Enviar');
         Empleado::insert($datosEmpleado);
         //return response()->json($datosEmpleado);
-        return redirect('empleado')->with('mensaje','Empleado agregado correctamente');
+        return redirect('empleado')->with('mensaje','okc');
     }
 
     /**
@@ -80,7 +80,8 @@ class EmpleadoController extends Controller
         Empleado::where('documento','=',$documento)->update($datosEmpleado);
 
         
-        return redirect('empleado')->with('mensaje','Empleado editado correctamente');
+        return redirect('empleado')->with('mensaje','okm');
+        
     }
 
     /**
@@ -92,6 +93,6 @@ class EmpleadoController extends Controller
     public function destroy($documento)
     {
         Empleado::destroy($documento);
-        return redirect('empleado')->with('mensaje','Empleado borrado correctamente');
+        return redirect('empleado')->with('mensaje','oke');
     }
 }
