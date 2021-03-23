@@ -294,8 +294,8 @@ return [
         [
             'text'       => 'Productos',
             'icon'       => 'fas fa-tags',
-            'url'      => '#',
-            'submenu' => [
+            'url'      => 'producto.index',
+            /*'submenu' => [
                 [
                     'text' => 'Gestiónar productos',
                     'url'  => '#',
@@ -306,7 +306,7 @@ return [
                     'url'  => '#',
                     'icon_color' => 'cyan',
                 ],
-            ],
+            ],*/
         ],
 
     ],

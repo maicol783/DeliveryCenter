@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\SedeController;
+use App\Http\Controllers\ProductoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +26,4 @@ Route::get('/', function () {
 
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('sede', SedeController::class);
+Route::resource('producto', ProductoController::class);
