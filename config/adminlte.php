@@ -231,7 +231,7 @@ return [
             'can'  => 'manage-blog',
         ],
 
-        ['header' => 'account_settings'],
+        ['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -242,7 +242,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
+        /*[
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -279,23 +279,36 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
-        ['header' => 'labels'],
+        ],*/
+        ['header' => 'NAVEGA'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'       => 'Empleados',
+            'icon'       => 'fas fa-users',
+            'route'        => 'empleado.index',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'       => 'Sedes',
+            'icon'       => 'fas fa-laptop-house',
+            'route'      => 'sede.index',
         ],
+        [
+            'text'       => 'Productos',
+            'icon'       => 'fas fa-tags',
+            'url'      => '#',
+            'submenu' => [
+                [
+                    'text' => 'Gestiónar productos',
+                    'url'  => '#',
+                    'icon_color' => 'yellow',
+                ],
+                [
+                    'text' => 'Entradas productos',
+                    'url'  => '#',
+                    'icon_color' => 'cyan',
+                ],
+            ],
+        ],
+
     ],
 
     /*

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sede\Sede;
+use App\Models\Barrio\Barrio;
+use App\Models\Municipio\Municipio;
 
 class SedeController extends Controller
 {
@@ -25,7 +27,9 @@ class SedeController extends Controller
      */
     public function create()
     {
-        return view('sede.create');
+        $barrio = Barrio::all();
+        $municipio = Municipio::all();
+        return view('sede.create', compact('barrio','municipio'));
 
     }
 

@@ -8,17 +8,17 @@
 
 <label for="Id_barrio">Barrio</label>
 <select class="form-control" name="Id_barrio" id="Id_barrio">
-    <option value="1">Santa Lucia</option>
-    <option value="2">San Javier</option>
-    <option value="3">Poblado</option>
+    @foreach($barrio as $valor)
+    <option value="{{ $valor->id_barrio }}">{{ $valor->nombre_barrio }}</option>
+    @endforeach
 </select>
 <br>
 
 <label for="Id_municipio">Municipio</label>
 <select  class="form-control" name="Id_municipio" id="Id_municipio">
-    <option value="1">Medellín</option>
-    <option value="2">Bello</option>
-    <option value="3">Sabaneta</option>
+    @foreach($municipio as $valor)
+    <option value="{{ $valor->id_municipio }}">{{ $valor->nombre_municipio }}</option>
+    @endforeach
 </select>
 <br>
 

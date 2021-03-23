@@ -40,17 +40,17 @@
 
 <label for="Id_sede">Sede</label>
 <select class="form-control" name="Id_sede" id="Id_sede">
-    <option value="1">Santa Lucia</option>
-    <option value="2">San Javier</option>
-    <option value="3">Poblado</option>
+    @foreach($sede as $valor)
+    <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endforeach
 </select>
 <br>
 
 <label for="Id_rol">Rol</label>
 <select  class="form-control" name="Id_rol" id="Id_rol">
-    <option value="1">Administrador</option>
-    <option value="2">Sede</option>
-    <option value="3">Central</option>
+    @foreach($rol as $valor)
+    <option value="{{ $valor->id_rol }}">{{ $valor->nombre_rol }}</option>
+    @endforeach
 </select>
 <br>
 

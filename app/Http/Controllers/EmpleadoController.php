@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleado\Empleado;
+use App\Models\Empleado\Rol;
+use App\Models\Sede\Sede;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -26,7 +28,9 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        return view('empleado.create');
+        $sede = Sede::all();
+        $rol = Rol::all();
+        return view('empleado.create', compact('sede','rol'));
     }
 
     /**

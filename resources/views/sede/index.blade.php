@@ -22,7 +22,7 @@
             <th class="text-center">Direccion</th>
             <th class="text-center">Barrio</th>
             <th class="text-center">Municipio</th>
-            <th class="text-center" width="100px">Acciones</th>
+            <th class="text-center">Acciones</th>
         </tr>
     </thead>
 
@@ -34,8 +34,8 @@
             <td class="text-center">{{ $sede->barrioSede->nombre_barrio  }}</td>
             <td class="text-center">{{ $sede->municipioSede->nombre_municipio  }}</td>
             <td class="text-center">
-
-            <a class="btn btn-warning btn-sm" href="{{ url('/sede/'.$sede->id_sede.'/edit') }}">
+            <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-sm mx-2" href="{{ url('/sede/'.$sede->id_sede.'/edit') }}">
             
                 Editar
             
@@ -45,10 +45,10 @@
             @csrf  
 
                 {{ method_field('DELETE') }} 
-                <input  class="btn btn-danger btn-sm" type="submit"  value="Borrar">
+                <input  class="btn btn-danger btn-sm mx-2" type="submit"  value="Borrar">
             
             </form>
-            
+            </div>
             </td>
         </tr>
     @endforeach

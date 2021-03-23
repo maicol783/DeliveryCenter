@@ -30,7 +30,7 @@
             <th class="text-center">Grupo sanguineo</th>
             <th class="text-center">Sede</th>
             <th class="text-center">Rol</th>
-            <th class="text-center" width="100px">Acciones</th>
+            <th class="text-center">Acciones</th>
         </tr>
     </thead>
 
@@ -49,9 +49,9 @@
             <td class="text-center">{{ $empleado->grupo_sanguineo }}</td>
             <td class="text-center">{{ $empleado->sedeEmpleado->nombre_sede }}</td>
             <td class="text-center">{{ $empleado->rolEmpleado->nombre_rol }}</td>
-            <td class="text-center">
-
-            <a class="btn btn-warning btn-sm" href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
+            <td class="text-center " >
+            <div class="d-flex justify-content-center">
+            <a class="btn btn-warning btn-sm mx-2" href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
             
                 Editar
             
@@ -61,10 +61,10 @@
             @csrf  
 
                 {{ method_field('DELETE') }} 
-                <input  class="btn btn-danger btn-sm" type="submit"  value="Borrar">
+                <input  class="btn btn-danger btn-sm mx-2" type="submit"  value="Borrar">
             
             </form>
-            
+            </div>
             </td>
         </tr>
     @endforeach
