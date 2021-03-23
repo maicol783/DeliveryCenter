@@ -96,7 +96,7 @@
 });
     
      </script>
-@if(Session('mensaje') == 'oke')
+@if(Session('mensaje') == 'EmpleadoEliminar')
 <script>
 Swal.fire(
   '¡Eliminado!',
@@ -105,7 +105,7 @@ Swal.fire(
 )
 </script>
 @endif
-@if(Session('mensaje') == 'okm')
+@if(Session('mensaje') == 'EmpleadoEditar')
 <script>
 Swal.fire(
   '¡Editado!',
@@ -114,7 +114,7 @@ Swal.fire(
 )
 </script>
 @endif
-@if(Session('mensaje') == 'okc')
+@if(Session('mensaje') == 'EmpleadoCrear')
 <script>
 Swal.fire(
   '¡Creado!',
