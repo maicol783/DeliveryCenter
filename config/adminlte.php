@@ -294,7 +294,7 @@ return [
         [
             'text'       => 'Productos',
             'icon'       => 'fas fa-tags',
-            'url'      => 'producto.index',
+            'route'      => 'producto.index',
             /*'submenu' => [
                 [
                     'text' => 'Gestiónar productos',
@@ -308,7 +308,11 @@ return [
                 ],
             ],*/
         ],
-
+        [
+            'text'       => 'Informes',
+            'icon'       => 'fas fa-paste',
+            'route'      => 'informe.index',
+        ],
     ],
 
     /*

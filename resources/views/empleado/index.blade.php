@@ -9,8 +9,13 @@
 
 <div class="table-responsive">
 
-<div>
+<div class="d-flex">
 <a class="btn btn-success" href="{{ url('empleado/create') }}">Nuevo empleado</a>
+
+<form class="d-flex mx-auto float-right">
+    <input name="buscarporempleado"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporempleado }}">
+    <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
 </div>
 <br>
 
@@ -71,7 +76,20 @@
     </tbody>
 
 </table>
+
 </div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
 
 @section('js')
     <script>
@@ -105,7 +123,7 @@ Swal.fire(
 )
 </script>
 @endif
-@if(Session('mensaje') == 'EmpleadoEditar')
+@if(Session('mensaje') == 'EmpleadoModificar')
 <script>
 Swal.fire(
   '¡Editado!',

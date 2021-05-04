@@ -14,10 +14,13 @@ class SedeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    const PAGINACION = 10;
+    public function index(Request $request)
     {
-        $datos['sedes'] = Sede::paginate(5);
-        return view('sede.index', $datos);
+        //$datos['sedes'] = Sede::paginate(5);
+        $buscarporsede = $request->get('buscarporsede');
+        $datos['sedes'] = Sede::where('nombre_sede','like','%'.$buscarporsede.'%')->orWhere('direccion_sede','like','%'.$buscarporsede.'%')->paginate($this::PAGINACION);
+        return view('sede.index', $datos, compact('buscarporsede'));
     }
 
     /**
@@ -67,7 +70,9 @@ class SedeController extends Controller
     public function edit($id_sede)
     {
         $sede = Sede::findOrFail($id_sede);
-        return view('sede.edit',compact('sede'));
+        $barrio = Barrio::all();
+        $municipio = Municipio::all();
+        return view('sede.edit',compact('sede','municipio','barrio'));
     }
 
     /**

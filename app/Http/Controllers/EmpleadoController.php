@@ -14,11 +14,15 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    const PAGINACION = 10;
+    public function index(Request $request)
     {
         //variable que va a usar el modelo para tomar los datos de la base de datos y pasarlos an index
-        $datos['empleados'] = Empleado::paginate(7);
-        return view('empleado.index', $datos);
+        
+        //$datos['empleados'] = Empleado::paginate(7);
+        $buscarporempleado = $request->get('buscarporempleado');
+        $datos['empleados'] = Empleado::where('primer_nombre','like','%'.$buscarporempleado.'%')->orWhere('documento','like','%'.$buscarporempleado.'%')->paginate($this::PAGINACION);
+        return view('empleado.index', $datos,compact('buscarporempleado'));
     }
 
     /**
@@ -68,7 +72,9 @@ class EmpleadoController extends Controller
     public function edit($documento)
     {
         $empleado = Empleado::findOrFail($documento);
-        return view('empleado.edit', compact('empleado'));
+        $sede = Sede::all();
+        $rol = Rol::all();
+        return view('empleado.edit', compact('empleado','rol','sede'));
     }
 
     /**

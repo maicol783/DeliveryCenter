@@ -12,9 +12,13 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    const PAGINACION = 10;
+    public function index(Request $request)
     {
-        //
+        //$datos['productos'] = Producto::paginate(7);
+        $buscarporproducto = $request->get('buscarporproducto');
+        $datos['productos'] = Producto::where('nombre_producto','like','%'.$buscarporproducto.'%')->orWhere('valor_producto','like','%'.$buscarporproducto.'%')->paginate($this::PAGINACION);
+        return view('producto.index', $datos, compact('buscarporproducto'));
     }
 
     /**
@@ -24,7 +28,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('producto.create');
     }
 
     /**
@@ -35,7 +39,11 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$datosEmpleado = request()->all();
+        $datosProducto = request()->except('_token','Enviar');
+        Producto::insert($datosProducto);
+        //return response()->json($datosEmpleado);
+        return redirect('producto')->with('mensaje','ProductoCrear');
     }
 
     /**
@@ -55,9 +63,10 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit($producto)
     {
-        //
+        $producto = Producto::findOrFail($producto);
+        return view('producto.edit', compact('producto'));
     }
 
     /**
@@ -67,9 +76,13 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id_producto)
     {
-        //
+        $datosProducto = request()->except('_token','Enviar','_method');
+        Producto::where('id_producto','=',$id_producto)->update($datosProducto);
+
+        
+        return redirect('producto')->with('mensaje','ProductoModificar');
     }
 
     /**
@@ -78,8 +91,9 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy($id_producto)
     {
-        //
+        Producto::destroy($id_producto);
+        return redirect('producto')->with('mensaje','ProductoEliminar');
     }
 }
