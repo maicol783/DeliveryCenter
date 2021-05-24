@@ -6,6 +6,43 @@
 <input class="form-control" type="text" name="direccion_sede" id="direccion_sede" value="{{ isset($sede->direccion_sede)?$sede->direccion_sede:'' }}">
 <br>
 
+@if(isset($sede->id_sede))
+<label for="Id_barrio">Barrio</label>
+<select class="form-control" name="Id_barrio" id="Id_barrio">
+    @foreach($barrio as $valor)
+    @if($valor->id_barrio == $sede->id_barrio )
+    <option value="{{ $valor->id_barrio }}" selected>{{ $valor->nombre_barrio }}</option>
+    @else
+    <option value="{{ $valor->id_barrio }}">{{ $valor->nombre_barrio }}</option>
+    @endif
+    @endforeach
+</select>
+<br>
+
+<label for="Id_municipio">Municipio</label>
+<select  class="form-control" name="Id_municipio" id="Id_municipio">
+    @foreach($municipio as $valor)
+    @if($valor->id_municipio == $sede->id_municipio )
+    <option value="{{ $valor->id_municipio }}" selected>{{ $valor->nombre_municipio }}</option>
+    @else
+    <option value="{{ $valor->id_municipio }}">{{ $valor->nombre_municipio }}</option>
+    @endif
+    @endforeach
+</select>
+<br>
+
+<label for="Estatus">Estado</label>
+<select  class="form-control" name="Estatus" id="Estatus">
+    @if($sede->estatus == 1)
+    <option value="1" selected>Activo</option>
+    <option value="2">Inactivo</option>
+    @else
+    <option value="1">Activo</option>
+    <option value="2" selected>Inactivo</option>
+    @endif
+</select>
+<br>
+@else
 <label for="Id_barrio">Barrio</label>
 <select class="form-control" name="Id_barrio" id="Id_barrio">
     @foreach($barrio as $valor)
@@ -21,6 +58,14 @@
     @endforeach
 </select>
 <br>
+
+<label for="Estatus">Estado</label>
+<select  class="form-control" name="Estatus" id="Estatus">
+    <option value="1">Activo</option>
+    <option value="2">Inactivo</option>
+</select>
+<br>
+@endif
 
 <input class="text-right btn btn-info  btn-sm" type="submit" name="Enviar" value="Guardar datos">
 <a class="text-right btn btn-info  btn-sm" href="{{ url('/sede/') }}">Atras</a>

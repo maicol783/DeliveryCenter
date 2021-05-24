@@ -17,6 +17,7 @@ class CreateProductosTable extends Migration
             $table->increments('id_producto');
             $table->string('nombre_producto',30)->unique();
             $table->decimal('valor_producto', $precision = 8, $scale = 2);
+            $table->string('estatus');
             $table->timestamps();
         });
     }

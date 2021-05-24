@@ -21,6 +21,7 @@ class CreateSedesTable extends Migration
             $table->foreign('id_barrio')->references('id_barrio')->on('barrios');
             $table->integer('id_municipio')->unsigned();
             $table->foreign('id_municipio')->references('id_municipio')->on('municipios');
+            $table->string('estatus');
             $table->timestamps();
         });
     }

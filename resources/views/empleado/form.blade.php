@@ -38,10 +38,47 @@
 <input class="form-control" type="text" name="Grupo_sanguineo" id="Grupo_sanguineo" value="{{ isset($empleado->grupo_sanguineo)?$empleado->grupo_sanguineo:'' }}">
 <br>
 
+@if(isset($empleado->documento))
 <label for="Id_sede">Sede</label>
 <select class="form-control" name="Id_sede" id="Id_sede">
     @foreach($sede as $valor)
+    @if($valor->id_sede == $empleado->id_sede )
+    <option value="{{ $valor->id_sede }}" selected>{{ $valor->nombre_sede }}</option>
+    @else
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endif
+    @endforeach
+</select>
+<br>
+
+<label for="Id_rol">Rol</label>
+<select  class="form-control" name="Id_rol" id="Id_rol">
+    @foreach($rol as $valor)
+    @if($valor->id_rol == $empleado->id_rol )
+    <option value="{{ $valor->id_rol }}" selected>{{ $valor->nombre_rol }}</option>
+    @else
+    <option value="{{ $valor->id_rol }}">{{ $valor->nombre_rol }}</option>
+    @endif
+    @endforeach
+</select>
+<br>
+
+<label for="Estatus">Estado</label>
+<select  class="form-control" name="Estatus" id="Estatus">
+    @if($empleado->estatus == 1)
+    <option value="1" selected>Activo</option>
+    <option value="2">Inactivo</option>
+    @else
+    <option value="1">Activo</option>
+    <option value="2" selected>Inactivo</option>
+    @endif
+</select>
+<br>
+@else
+<label for="Id_sede">Sede</label>
+<select class="form-control" name="Id_sede" id="Id_sede">
+    @foreach($sede as $valor)
+    <option value="{{ $valor->id_sede }}" selected>{{ $valor->nombre_sede }}</option>
     @endforeach
 </select>
 <br>
@@ -53,6 +90,14 @@
     @endforeach
 </select>
 <br>
+
+<label for="Estatus">Estado</label>
+<select  class="form-control" name="Estatus" id="Estatus">
+    <option value="1" >Activo</option>
+    <option value="2">Inactivo</option>
+</select>
+<br>
+@endif
 
 <input class="text-right btn btn-info  btn-sm" type="submit" name="Enviar" value="Guardar datos">
 <a class="text-right btn btn-info  btn-sm" href="{{ url('/empleado/') }}">Atras</a>

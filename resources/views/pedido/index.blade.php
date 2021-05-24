@@ -1,7 +1,7 @@
 @extends('adminlte::page')
-@section('title', 'Empleados')
+@section('title', 'Pedidos')
 @section('content_header')
-    <h1>Empleados</h1>
+    <h1>Pedidos</h1>
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
@@ -10,10 +10,10 @@
 <div class="table-responsive">
 
 <div class="d-flex">
-<a class="btn btn-success" href="{{ url('empleado/create') }}">Nuevo empleado</a>
+<a class="btn btn-success" href="{{ url('pedido/create') }}">Nuevo empleado</a>
 
 <form class="d-flex mx-auto float-right">
-    <input name="buscarporempleado"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporempleado }}">
+    <input name="buscarporpedido"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporpedido }}">
     <button class="btn btn-outline-success" type="submit">Buscar</button>
 </form>
 </div>
@@ -23,54 +23,46 @@
 
     <thead class="">
         <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Sede</th>
+            <th class="text-center">Estado</th>
             <th class="text-center">Documento</th>
             <th class="text-center">Primer nombre</th>
             <th class="text-center">Segundo nombre</th>
-            <th class="text-center">Primer apellido</th>
-            <th class="text-center">Segundo apellido</th>
-            <th class="text-center">Celular</th>
+            <th class="text-center">Primer aprellido</th>
+            <th class="text-center">Segundo aprellido</th>
+            <th class="text-center">Direccion</th>
             <th class="text-center">Telefono</th>
-            <th class="text-center">Correo</th>
-            <th class="text-center">Contraseña</th>
-            <th class="text-center">Grupo sanguineo</th>
-            <th class="text-center">Sede</th>
-            <th class="text-center">Rol</th>
-            <th class="text-center">Estado</th>
+            <th class="text-center">Celular</th>
             <th class="text-center">Opciones</th>
         </tr>
     </thead>
 
     <tbody>
-    @foreach($empleados as $empleado)
+    @foreach($pedidos as $pedido)
         <tr>
-            <td class="text-center">{{ $empleado->documento }}</td>
-            <td class="text-center">{{ $empleado->primer_nombre }}</td>
-            <td class="text-center">{{ $empleado->segundo_nombre }}</td>
-            <td class="text-center">{{ $empleado->primer_apellido }}</td>
-            <td class="text-center">{{ $empleado->segundo_apellido }}</td>
-            <td class="text-center">{{ $empleado->celular }}</td>
-            <td class="text-center">{{ $empleado->telefono }}</td>
-            <td class="text-center">{{ $empleado->correo }}</td>
-            <td class="text-center">{{ $empleado->contraseña }}</td>
-            <td class="text-center">{{ $empleado->grupo_sanguineo }}</td>
-            <td class="text-center">{{ $empleado->sedeEmpleado->nombre_sede }}</td>
-            <td class="text-center">{{ $empleado->rolEmpleado->nombre_rol }}</td>
-            <td class="text-center">
-              @if($empleado->estatus == 1)
-                <button type="button" class="btn btn-sm btn-success">Activo</button>
-              @else
-                <button type="button" class="btn btn-sm btn-danger">Inactivo</button>
-              @endif
-            </td>
+            <td class="text-center">{{ $pedido->id_pedido }}</td>
+            <td class="text-center">{{ $pedido->fecha }}</td>
+            <td class="text-center">{{ $pedido->sedePedido->nombre_sede }}</td>
+            <td class="text-center">{{ $pedido->estadoPedido->nombre_estado }}</td>
+            <td class="text-center">{{ $pedido->documento_cliente }}</td>
+            <td class="text-center">{{ $pedido->primerNombre_cliente }}</td>
+            <td class="text-center">{{ $pedido->segundoNombre_cliente }}</td>
+            <td class="text-center">{{ $pedido->primerApellido_cliente }}</td>
+            <td class="text-center">{{ $pedido->segundoApellido_cliente }}</td>
+            <td class="text-center">{{ $pedido->direccion_cliente }}</td>
+            <td class="text-center">{{ $pedido->telefono_cliente }}</td>
+            <td class="text-center">{{ $pedido->celular_cliente }}</td>
             <td class="text-center">
             <div class="d-flex justify-content-center">
-            <a class="btn btn-warning btn-sm mx-2" href="{{ url('/empleado/'.$empleado->documento.'/edit') }}">
+            <a class="btn btn-warning btn-sm mx-2" href="{{ url('/pedido/'.$pedido->id_pedido.'/edit') }}">
             
                 Editar
             
             </a>
             |
-            <form action="{{ url('/empleado/'.$empleado->documento) }}" class="formulario-eliminar" method="post"> 
+            <form action="{{ url('/pedido/'.$pedido->id_pedido) }}" class="formulario-eliminar" method="post"> 
             @csrf  
 
                 {{ method_field('DELETE') }} 

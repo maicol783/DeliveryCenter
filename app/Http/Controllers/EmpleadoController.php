@@ -21,7 +21,7 @@ class EmpleadoController extends Controller
         
         //$datos['empleados'] = Empleado::paginate(7);
         $buscarporempleado = $request->get('buscarporempleado');
-        $datos['empleados'] = Empleado::where('primer_nombre','like','%'.$buscarporempleado.'%')->orWhere('documento','like','%'.$buscarporempleado.'%')->paginate($this::PAGINACION);
+        $datos['empleados'] = Empleado::where('primer_nombre','like','%'.$buscarporempleado.'%')->orWhere('documento','like','%'.$buscarporempleado.'%')->orWhere('documento','like','%'.$buscarporempleado.'%')->paginate($this::PAGINACION);
         return view('empleado.index', $datos,compact('buscarporempleado'));
     }
 

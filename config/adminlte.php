@@ -313,6 +313,11 @@ return [
             'icon'       => 'fas fa-paste',
             'route'      => 'informe.index',
         ],
+        [
+            'text'       => 'Pedidos',
+            'icon'       => 'fas fa-truck-loading',
+            'route'      => 'pedido.index',
+        ],
     ],
 
     /*

@@ -28,6 +28,7 @@ class CreateEmpleadosTable extends Migration
             $table->foreign('id_sede')->references('id_sede')->on('sedes');
             $table->integer('id_rol')->unsigned();
             $table->foreign('id_rol')->references('id_rol')->on('roles');
+            $table->string('estatus');
             $table->timestamps();
         });
     }
