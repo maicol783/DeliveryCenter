@@ -24,8 +24,10 @@
     <thead class="">
         <tr>
             <th class="text-center">Nombre</th>
+            <th class="text-center">Existencias</th>
             <th class="text-center">Precio</th>
-            <th class="text-center">Acciones</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Opciones</th>
         </tr>
     </thead>
 
@@ -33,7 +35,15 @@
     @foreach($productos as $producto)
         <tr>
             <td class="text-center">{{ $producto->nombre_producto }}</td>
+            <td class="text-center">{{ $producto->existencias }}</td>
             <td class="text-center">{{ $producto->valor_producto }}</td>
+            <td class="text-center">
+              @if($producto->estatus == 1)
+                <button type="button" class="btn btn-sm btn-success">Activo</button>
+              @else
+                <button type="button" class="btn btn-sm btn-danger">Inactivo</button>
+              @endif
+            </td>
             <td class="text-center " >
             <div class="d-flex justify-content-center">
             <a class="btn btn-warning btn-sm mx-2" href="{{ url('/producto/'.$producto->id_producto.'/edit') }}">

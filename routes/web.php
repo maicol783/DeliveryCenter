@@ -6,6 +6,7 @@ use App\Http\Controllers\SedeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\DetalleProductoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +32,4 @@ Route::resource('sede', SedeController::class);
 Route::resource('producto', ProductoController::class);
 Route::resource('informe', InformeController::class);
 Route::resource('pedido', PedidoController::class);
+Route::resource('detalle_producto', DetalleProductoController::class);

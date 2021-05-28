@@ -9,7 +9,7 @@
 <form action="{{ url('/producto') }}" class="formulario-crear" method="post">
 @csrf
 
-@include('producto.form',['modo'=>''])
+@include('producto.form',['modo'=>'readonly'])
 
 </form>
 @section('js')

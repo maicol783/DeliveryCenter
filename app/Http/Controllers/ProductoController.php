@@ -42,7 +42,7 @@ class ProductoController extends Controller
         //$datosEmpleado = request()->all();
         $datosProducto = request()->except('_token','Enviar');
         Producto::insert($datosProducto);
-        //return response()->json($datosEmpleado);
+        //return response()->json($datosProducto);
         return redirect('producto')->with('mensaje','ProductoCrear');
     }
 

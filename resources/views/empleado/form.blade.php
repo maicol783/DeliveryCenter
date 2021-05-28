@@ -78,7 +78,9 @@
 <label for="Id_sede">Sede</label>
 <select class="form-control" name="Id_sede" id="Id_sede">
     @foreach($sede as $valor)
-    <option value="{{ $valor->id_sede }}" selected>{{ $valor->nombre_sede }}</option>
+    @if($valor->estatus == 1)
+    <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endif
     @endforeach
 </select>
 <br>

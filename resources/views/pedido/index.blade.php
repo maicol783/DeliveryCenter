@@ -10,7 +10,7 @@
 <div class="table-responsive">
 
 <div class="d-flex">
-<a class="btn btn-success" href="{{ url('pedido/create') }}">Nuevo empleado</a>
+<a class="btn btn-success" href="{{ url('pedido/create') }}">Nuevo Pedido</a>
 
 <form class="d-flex mx-auto float-right">
     <input name="buscarporpedido"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporpedido }}">
@@ -99,7 +99,7 @@
 $('.formulario-eliminar').submit(function(e){
   e.preventDefault();
   Swal.fire({
-  title: '¿Estas seguro de eliminar este empleado?',
+  title: '¿Estas seguro de eliminar este pedido?',
   text: "¡No lo puedes revertir!",
   icon: 'question',
   showCancelButton: true,
@@ -115,7 +115,7 @@ $('.formulario-eliminar').submit(function(e){
 });
     
      </script>
-@if(Session('mensaje') == 'EmpleadoEliminar')
+@if(Session('mensaje') == 'PedidoEliminar')
 <script>
 Swal.fire(
   '¡Eliminado!',

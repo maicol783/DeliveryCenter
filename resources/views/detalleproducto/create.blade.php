@@ -1,34 +1,31 @@
 @extends('adminlte::page')
-@section('title', 'Editar producto')
+@section('title', 'Nuevo empleado')
 @section('content_header')
-    <h1>Editar producto</h1>
+    <h1>Agregar existencia de producto</h1>
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
 
-<form action="{{ url('/producto/'.$producto->id_producto) }}" class="formulario-editar" method="post">
-
+<form action="{{ url('/empleado') }}" class="formulario-crear" method="post">
 @csrf
-{{ method_field('PATCH') }}
 
-@include('producto.form')
+@include('empleado.form',['modo'=>''])
 
 </form>
-
 @section('js')
     <script>
 
-    $('.formulario-editar').submit(function(e){
+    $('.formulario-crear').submit(function(e){
         e.preventDefault();
 
     Swal.fire({
-  title: '¿Estas seguro de editar este producto?',
-  text: "¡Puedes volver a editarlos!",
+  title: '¿Estas seguro de crear este empleado?',
+  text: "¡Podras eliminarlo despues!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, editar!',
+  confirmButtonText: '¡Si, crear!',
   cancelButtonText: '¡Cancelar!'
 }).then((result) => {
   if (result.value) {
@@ -39,4 +36,5 @@
     
 </script>
 @stop
+
 @stop
