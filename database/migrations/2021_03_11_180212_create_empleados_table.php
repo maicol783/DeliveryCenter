@@ -26,8 +26,6 @@ class CreateEmpleadosTable extends Migration
             $table->string('grupo_sanguineo',10);
             $table->integer('id_sede')->unsigned();
             $table->foreign('id_sede')->references('id_sede')->on('sedes');
-            $table->integer('id_rol')->unsigned();
-            $table->foreign('id_rol')->references('id_rol')->on('roles');
             $table->string('estatus');
             $table->timestamps();
         });
