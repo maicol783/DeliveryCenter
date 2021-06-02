@@ -33,7 +33,7 @@
             <th class="text-center">Correo</th>
             <th class="text-center">Contraseña</th>
             <th class="text-center">Grupo sanguineo</th>
-            <th class="text-center">Sede</th>
+            <th class="text-center" style= "padding-right: 25px; padding-left: 25px;">Sede</th>
             <th class="text-center">Rol</th>
             <th class="text-center">Estado</th>
             <th class="text-center">Opciones</th>

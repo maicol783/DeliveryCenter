@@ -318,6 +318,11 @@ return [
             'icon'       => 'fas fa-truck-loading',
             'route'      => 'pedido.index',
         ],
+        [
+            'text'       => 'Entradas',
+            'icon'       => 'fas fa-truck-loading',
+            'route'      => 'entradaproducto.index',
+        ],
     ],
 
     /*

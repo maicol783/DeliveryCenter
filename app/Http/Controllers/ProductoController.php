@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto\Producto;
 use Illuminate\Http\Request;
+use App\Models\Sede\Sede;
 
 class ProductoController extends Controller
 {
@@ -28,7 +29,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('producto.create');
+        $sede = Sede::all();
+        return view('producto.create', compact('sede'));
     }
 
     /**
@@ -66,7 +68,8 @@ class ProductoController extends Controller
     public function edit($producto)
     {
         $producto = Producto::findOrFail($producto);
-        return view('producto.edit', compact('producto'));
+        $sede = Sede::all();
+        return view('producto.edit', compact('producto','sede'));
     }
 
     /**

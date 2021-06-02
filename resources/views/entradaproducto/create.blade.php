@@ -1,15 +1,15 @@
 @extends('adminlte::page')
-@section('title', 'Nuevo empleado')
+@section('title', 'Nueva existencia')
 @section('content_header')
     <h1>Agregar existencia de producto</h1>
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
 
-<form action="{{ url('/empleado') }}" class="formulario-crear" method="post">
+<form action="{{ url('/entradaproducto') }}" class="formulario-crear" method="post">
 @csrf
 
-@include('empleado.form',['modo'=>''])
+@include('entradaproducto.form',['modo'=>''])
 
 </form>
 @section('js')
@@ -19,8 +19,8 @@
         e.preventDefault();
 
     Swal.fire({
-  title: '¿Estas seguro de crear este empleado?',
-  text: "¡Podras eliminarlo despues!",
+  title: '¿Estas seguro de agragar esta existencia?',
+  text: "¡Podras eliminarla despues!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
