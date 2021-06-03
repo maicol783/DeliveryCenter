@@ -14,44 +14,45 @@
                 <!-- Button trigger modal -->
 
   <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
+    Ingresar a los modulos.
   </button>
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Selecciona el modulo a ingresar</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="card text-center">
                 <div class="card-header">
-                  Featured
+                  Admin
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
+                  <h5 class="card-title">Modulo de administracion</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
                 <div class="card-footer text-muted">
                   2 days ago
                 </div>
-              </div><div class="card text-center">
+                
+              </div><br><div class="card text-center">
                 <div class="card-header">
-                  Featured
+                  Central
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
+                  <h5 class="card-title">Modulo Central</h5>
                   <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
                 <div class="card-footer text-muted">
                   2 days ago
                 </div>
-              </div><div class="card text-center">
+              </div><br><div class="card text-center">
                 <div class="card-header">
-                  Featured
+                  Sede
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Special title treatment</h5>

@@ -29,40 +29,24 @@ Route::get('/', function () {
 */
 
 Route::resource('empleado', EmpleadoController::class);
-
-Route::resource('ADMIN/sede', SedeController::class);
 Route::resource('sede', SedeController::class);
 Route::resource('producto', ProductoController::class);
 Route::resource('informe', InformeController::class);
 Route::resource('pedido', PedidoController::class);
 
 Route::resource('entradaproducto', EntradaProductoController::class);
-<<<<<<< Updated upstream
-
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-=======
 Auth::routes();
 
 /*Route::get('/', function () {
     return Inertia::render('login', [
->>>>>>> Stashed changes
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-<<<<<<< Updated upstream
-});
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
-=======
 });*/
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
->>>>>>> Stashed changes
