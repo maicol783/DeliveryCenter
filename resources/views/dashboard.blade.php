@@ -6,7 +6,7 @@
         </h2>
     </x-slot>
 <br>
-    <div class="d-grid gap-2 col-6 mx-auto">
+    <div class="d-grid gap-2 col-9 mx-auto">
         
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             
@@ -31,11 +31,11 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Modulo de administracion</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <p class="card-text">Accede a las funcionalidades del usuario ADMIN.</p>
+                  <a href="#" class="btn btn-primary">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
-                  2 days ago
+                  
                 </div>
                 
               </div><br><div class="card text-center">
@@ -44,29 +44,29 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Modulo Central</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <p class="card-text">Accede a las funcionalidades del usuario CENTRAL.</p>
+                  <a href="#" class="btn btn-primary">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
-                  2 days ago
+                  
                 </div>
               </div><br><div class="card text-center">
                 <div class="card-header">
                   Sede
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <h5 class="card-title">Modulo Sede</h5>
+                  <p class="card-text">Accede a las funcionalidades del usuario SEDE.</p>
+                  <a href="#" class="btn btn-primary">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
-                  2 days ago
+                  
                 </div>
               </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+
         </div>
       </div>
     </div>
