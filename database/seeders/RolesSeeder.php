@@ -16,9 +16,15 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< Updated upstream
         $role1 = Role::create(['name'=> 'Administrador']);
         $role1 = Role::create(['name'=> 'Central']);
         $role1 = Role::create(['name'=> 'Sede']);
 
+=======
+        $role1 = Role::create(['name'=> 'Admin']);
+        $role1 = Role::create(['name'=> 'Central']);
+        $role1 = Role::create(['name'=> 'Sede']);
+>>>>>>> Stashed changes
     }
 }
