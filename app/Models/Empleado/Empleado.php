@@ -9,15 +9,13 @@ use App\Models\Sede;
 class Empleado extends Model
 {
     use HasFactory;
+    protected $table = 'users'; 
     protected $primaryKey = 'documento';
 
     public function getRouteKeyName(){
         return 'documento';
     }
 
-    public function rolEmpleado(){
-        return $this->belongsTo(Rol::class, 'id_rol');
-    }
 
     public function sedeEmpleado(){
         return $this->belongsTo(Sede\Sede::class, 'id_sede');

@@ -19,7 +19,9 @@ class EntradaProductoController extends Controller
     public function index(Request $request)
     {
         $buscarporentrada = $request->get('buscarporentrada');
-        $datos['entradas'] =EntradaProducto::join('productos', 'entrada_productos.id_producto', '=', 'productos.id_producto')->join('sedes', 'productos.id_sede', '=', 'sedes.id_sede')->get();
+        $datos['entradas'] = EntradaProducto::join('productos', 'entrada_productos.id_producto', '=', 'productos.id_producto')
+        ->join('sedes', 'productos.id_sede', '=', 'sedes.id_sede')
+        ->get();
         return view('entradaproducto.index', $datos,compact('buscarporentrada'));
     }
 

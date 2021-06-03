@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EntradaProductoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,16 @@ Route::resource('producto', ProductoController::class);
 Route::resource('informe', InformeController::class);
 Route::resource('pedido', PedidoController::class);
 Route::resource('entradaproducto', EntradaProductoController::class);
+
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
