@@ -88,6 +88,10 @@ class ProductoController extends Controller
         return redirect('producto')->with('mensaje','ProductoModificar');
     }
 
+    public function traer_sede(){
+        //$sedes = Producto::where('id_sede', '=', $id_sede)->get ();
+        
+    }
     /**
      * Remove the specified resource from storage.
      *

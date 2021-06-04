@@ -10,6 +10,8 @@ use App\Models\Estado\Estado;
 class Pedido extends Model
 {
     use HasFactory;
+    protected $fillable = ['fecha', 'id_sede', 'id_estado', 'documento_cliente', 'nombre_cliente',
+    'apellido_cliente', 'direccion_cliente', 'telefono_cliente', 'total'];
     protected $primaryKey = 'id_pedido';
 
     public function getRouteKeyName(){

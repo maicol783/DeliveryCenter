@@ -48,7 +48,7 @@ class EntradaProductoController extends Controller
         //$datosEmpleado = request()->all();
         $datosEntrada = request()->except('_token','Enviar','id_sede');
         EntradaProducto::insert($datosEntrada);
-        Producto::where('id_sede', '=', $request->get('id_sede'))->increment('existencias', $request->get('cantidad_entrada'));
+        Producto::where('id_sede', '=', $request->get('id_sede'))->where('id_producto', '=', $request->get('id_producto'))->increment('existencias', $request->get('cantidad_entrada'));
         //return response()->json($datosEntrada);
         return redirect('entradaproducto')->with('mensaje','EntradaCrear');
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\InformeController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\EntradaProductoController;
+use App\Models\Producto\Producto;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,11 @@ Route::resource('producto', ProductoController::class);
 Route::resource('informe', InformeController::class);
 Route::resource('pedido', PedidoController::class);
 Route::resource('entradaproducto', EntradaProductoController::class);
+Route::get('traer_productos/{id}', function ($id) {
+    $produc = Producto::where('id_sede','=', $id)->get();
+    return response()->json($produc);
+});
+    
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

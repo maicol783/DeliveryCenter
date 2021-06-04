@@ -15,9 +15,9 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id_producto');
-            $table->string('nombre_producto',30)->unique();
+            $table->string('nombre_producto',30);
             $table->integer('existencias');
-            $table->decimal('valor_producto', $precision = 8, $scale = 2);
+            $table->float('valor_producto', 8, 2);
             $table->integer('id_sede')->unsigned();
             $table->foreign('id_sede')->references('id_sede')->on('sedes');
             $table->string('estatus');

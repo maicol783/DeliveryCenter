@@ -315,7 +315,7 @@ return [
         ],
         [
             'text'       => 'Pedidos',
-            'icon'       => 'fas fa-truck-loading',
+            'icon'       => 'fas fa-cart-arrow-down',
             'route'      => 'pedido.index',
         ],
         [

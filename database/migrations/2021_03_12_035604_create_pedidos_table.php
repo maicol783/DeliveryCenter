@@ -21,13 +21,11 @@ class CreatePedidosTable extends Migration
             $table->integer('id_estado')->unsigned();
             $table->foreign('id_estado')->references('id_estado')->on('estados');
             $table->string('documento_cliente',20);
-            $table->string('primerNombre_cliente',25);
-            $table->string('segundoNombre_cliente',25);
-            $table->string('primerApellido_cliente',25);
-            $table->string('segundoApellido_cliente',25);
+            $table->string('nombre_cliente',35);
+            $table->string('apellido_cliente',35);
             $table->string('direccion_cliente',25);
             $table->string('telefono_cliente',25);
-            $table->string('celular_cliente',25);
+            $table->float('total', 8, 2);
             $table->timestamps();
         });
     }

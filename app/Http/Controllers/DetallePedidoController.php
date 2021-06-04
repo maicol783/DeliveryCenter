@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetallePedido\DetallePedido;
 use Illuminate\Http\Request;
-use App\Models\Pedido\Pedido;
-use App\Models\Sede\Sede;
-use App\Models\Producto\Producto;
-use App\Models\Estado\Estado;
 
-class PedidoController extends Controller
+class DetallePedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $buscarporpedido = $request->get('buscarporpedido');
-        $datos['pedidos'] = Pedido::where('id_pedido','like','%'.$buscarporpedido.'%')->paginate(10);
-        return view('pedido.index', $datos,compact('buscarporpedido'));
+        //
     }
 
     /**
@@ -29,10 +24,7 @@ class PedidoController extends Controller
      */
     public function create()
     {
-        $sedes = Sede::all();
-        $estados = Estado::all();
-        $productos = Producto::all();
-        return view('pedido.create', compact('sedes','estados','productos'));
+        //
     }
 
     /**
@@ -49,10 +41,10 @@ class PedidoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DetallePedido $detallePedido)
     {
         //
     }
@@ -60,10 +52,10 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DetallePedido $detallePedido)
     {
         //
     }
@@ -72,10 +64,10 @@ class PedidoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DetallePedido $detallePedido)
     {
         //
     }
@@ -83,10 +75,10 @@ class PedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\DetallePedido\DetallePedido  $detallePedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DetallePedido $detallePedido)
     {
         //
     }
