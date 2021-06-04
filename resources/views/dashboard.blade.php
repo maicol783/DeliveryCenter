@@ -24,7 +24,9 @@
           <h5 class="modal-title" id="exampleModalLabel">Selecciona el modulo a ingresar</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        
         <div class="modal-body">
+          @can('Dashboard.Admin')
             <div class="card text-center text-white bg-warning mb-3">
                 <div class="card-header">
                   Admin <i class="fas fa-id-card-alt"></i>
@@ -32,25 +34,32 @@
                 <div class="card-body">
                   <h5 class="card-title">Modulo de administracion</h5>
                   <p class="card-text">Accede a las funcionalidades del usuario ADMIN.</p>
-                  <a href="#" class="btn btn-danger">Seleccionar!</a>
+                  <a href="{{ url('users')}}" class="btn btn-danger">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
                   
                 </div>
-                
-              </div><br><div class="card text-center text-white bg-danger mb-3">
+            @endcan
+              </div><br>
+              @can('Dashboard.Central')
+              <div class="card text-center text-white bg-danger mb-3">
                 <div class="card-header">
                   Central <i class="fas fa-id-card"></i>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Modulo Central</h5>
                   <p class="card-text">Accede a las funcionalidades del usuario CENTRAL.</p>
-                  <a href="#" class="btn btn-warning">Seleccionar!</a>
+                  <a href="{{ url('sede')}}" class="btn btn-warning">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
-                  
+                 
                 </div>
-              </div><br><div class="card text-center text-white bg-warning mb-3">
+                
+              </div>
+              @endcan
+              <br>
+              @can('Dashboard.Sede')
+              <div class="card text-center text-white bg-warning mb-3">
                 <div class="card-header">
                   Sede <i class="fas fa-id-badge"></i>
                 </div>
@@ -58,12 +67,15 @@
                   <h5 class="card-title">Modulo Sede</h5>
                   <p class="card-text">Accede a las funcionalidades del usuario SEDE.</p>
                   
-                  <a href="#" class="btn btn-danger">Seleccionar!</a>
+                  <a href="{{ url('pedido')}}" class="btn btn-danger">Seleccionar!</a>
                 </div>
+                
                 <div class="card-footer text-muted">
-                  
+                  @endcan
                 </div>
+                
               </div>
+             
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
