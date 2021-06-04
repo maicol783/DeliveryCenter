@@ -10,8 +10,9 @@
 <div class="table-responsive">
 
 <div class="d-flex">
+  @can('entradaproducto.create')
 <a class="btn btn-success" href="{{ url('entradaproducto/create') }}">Nueva entrada</a>
-
+  @endcan
 <form class="d-flex mx-auto float-right">
     <input name="buscarporentrada"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporentrada }}">
     <button class="btn btn-outline-success" type="submit">Buscar</button>

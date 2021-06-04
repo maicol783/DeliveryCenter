@@ -1,6 +1,6 @@
 <x-jet-action-section>
     <x-slot name="title">
-        {{ __('Browser Sessions') }}
+        {{ __('SESIONES DE NAVEGADOR') }}
     </x-slot>
 
     <x-slot name="description">

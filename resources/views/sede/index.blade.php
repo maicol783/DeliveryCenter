@@ -10,8 +10,9 @@
 <div class="table-responsive">
 
 <div class="d-flex">
+  @can('sede.create')
 <a class="btn btn-success" href="{{ url('sede/create') }}">Nueva sede</a>
-
+@endcan
 <form class="d-flex mx-auto float-right">
     <input name="buscarporsede"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporsede }}">
     <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -28,8 +29,11 @@
             <th class="text-center">Barrio</th>
             <th class="text-center">Municipio</th>
             <th class="text-center">Estado</th>
+            @can('sede.edit')
             <th class="text-center">Opciones</th>
+           
         </tr>
+        @endcan
     </thead>
 
     <tbody>
@@ -48,18 +52,21 @@
             </td>
             <td class="text-center">
             <div class="d-flex justify-content-center">
+              @can('sede.edit')
             <a class="btn btn-warning btn-sm mx-2" href="{{ url('/sede/'.$sede->id_sede.'/edit') }}">
-            
+              
                 Editar
-            
+                @endcan
             </a>
-            |
-            <form action="{{ url('/sede/'.$sede->id_sede) }}" class="formulario-eliminar" method="post"> 
-            @csrf  
-
-                {{ method_field('DELETE') }} 
-                <input  class="btn btn-danger btn-sm mx-2" type="submit"  value="Borrar">
             
+            <form action="{{ url('/sede/'.$sede->id_sede) }}" class="formulario-eliminar" method="post"> 
+              
+            @csrf  
+            
+                {{ method_field('DELETE') }} 
+                @can('sede.delete')
+                <input  class="btn btn-danger btn-sm mx-2" type="submit"  value="Borrar">
+                 @endcan
             </form>
             </div>
             </td>

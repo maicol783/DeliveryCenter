@@ -9,7 +9,7 @@ use App\Models\Sede;
 class Empleado extends Model
 {
     use HasFactory;
-    protected $table = 'users'; 
+    protected $table = 'empleados'; 
     protected $primaryKey = 'documento';
 
     public function getRouteKeyName(){

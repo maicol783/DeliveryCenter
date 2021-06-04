@@ -10,8 +10,9 @@
 <div class="table-responsive">
 
 <div class="d-flex"> 
+  @can('sede.create')
 <a class="btn btn-success " href="{{ url('producto/create') }}">Nuevo producto</a>
-
+@endcan
 <form class="d-flex mx-auto float-right">
     <input name="buscarporproducto"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporproducto }}">
     <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -48,18 +49,21 @@
             </td>
             <td class="text-center " >
             <div class="d-flex justify-content-center">
+              @can('sede.edit')
             <a class="btn btn-warning btn-sm mx-2" href="{{ url('/producto/'.$producto->id_producto.'/edit') }}">
             
                 Editar
-            
+                
             </a>
+            @endcan
+            
             |
             <form action="{{ url('/producto/'.$producto->id_producto) }}" class="formulario-eliminar" method="post"> 
             @csrf  
-
+       
                 {{ method_field('DELETE') }} 
                 <input  class="btn btn-danger btn-sm mx-2" type="submit"  value="Borrar">
-            
+                
             </form>
             </div>
             </td>
