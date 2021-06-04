@@ -272,9 +272,10 @@ return [
         ],*/
         ['header' => 'NAVEGA'],
         [
-            'text'       => 'Empleados',
+            'text'       => 'Usuarios',
             'icon'       => 'fas fa-users fa-fw',
             'route'      => 'admin.users.index',
+            'can'       => 'admin.users.index'
         ],
         [
             'text'       => 'Empleados',

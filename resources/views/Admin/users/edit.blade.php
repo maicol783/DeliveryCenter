@@ -18,9 +18,11 @@
        <div class="card-body">
            <p class="h5">Nombre</p>
            <p class="form-control">{{$user->name}}</p>
-
+          @can('admin.users.update')
            {!! Form::model($user, ['route' =>['admin.users.update', $user],'method' => 'put']) !!}
+           @endcan
            @foreach($roles as $role)
+      
            <div>
                <label>
                    {!! Form::checkbox('roles[]', $role->id, null, ['class' => 'mr-1']) !!}

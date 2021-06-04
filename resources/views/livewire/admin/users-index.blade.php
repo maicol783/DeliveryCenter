@@ -24,7 +24,10 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td>
+                            @can('admin.users.edit')
                             <a class="btn btn-danger"href="{{route('admin.users.edit', $user)}}">Editar</a>
+                            @endcan
+                            
                         </td>
                     </tr>
                     @endforeach
