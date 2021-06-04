@@ -21,6 +21,11 @@ class RolesSeeder extends Seeder
         $role3 = Role::create(['name'=> 'Sede']);
 
 
+        Permission::create(['name'=>'admin.users.index'])->syncRoles([$role1]);
+        Permission::create(['name'=>'admin.users.edit'])->syncRoles([$role1]);
+        Permission::create(['name'=>'admin.users.update'])->syncRoles([$role1]);
+
+
         Permission::create(['name'=>'empleado.index'])->syncRoles([$role1, $role2, $role3]);
         Permission::create(['name'=>'empleado.edit'])->syncRoles([$role1, $role2, $role3]);
         Permission::create(['name'=>'empleado.form'])->syncRoles([$role1, $role2, $role3]);
@@ -45,10 +50,10 @@ class RolesSeeder extends Seeder
         Permission::create(['name'=>'producto.form'])->syncRoles([$role1, $role2, $role3]);
         Permission::create(['name'=>'producto.create'])->syncRoles([$role1, $role2, $role3]);
 
-        Permission::create(['name'=>'sede.index'])->syncRoles([$role1, $role2, $role3]);
-        Permission::create(['name'=>'sede.edit'])->syncRoles([$role1, $role2, $role3]);
-        Permission::create(['name'=>'sede.form'])->syncRoles([$role1, $role2, $role3]);
-        Permission::create(['name'=>'sede.create'])->syncRoles([$role1, $role2, $role3]);
+        Permission::create(['name'=>'sede.index'])->syncRoles([$role1,]);
+        Permission::create(['name'=>'sede.edit'])->syncRoles([$role1,]);
+        Permission::create(['name'=>'sede.form'])->syncRoles([$role1,]);
+        Permission::create(['name'=>'sede.create'])->syncRoles([$role1,]);
 
         
     }
