@@ -25,39 +25,40 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="card text-center">
+            <div class="card text-center text-white bg-warning mb-3">
                 <div class="card-header">
-                  Admin
+                  Admin <i class="fas fa-id-card-alt"></i>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Modulo de administracion</h5>
                   <p class="card-text">Accede a las funcionalidades del usuario ADMIN.</p>
-                  <a href="#" class="btn btn-primary">Seleccionar!</a>
+                  <a href="#" class="btn btn-danger">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
                   
                 </div>
                 
-              </div><br><div class="card text-center">
+              </div><br><div class="card text-center text-white bg-danger mb-3">
                 <div class="card-header">
-                  Central
+                  Central <i class="fas fa-id-card"></i>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Modulo Central</h5>
                   <p class="card-text">Accede a las funcionalidades del usuario CENTRAL.</p>
-                  <a href="#" class="btn btn-primary">Seleccionar!</a>
+                  <a href="#" class="btn btn-warning">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
                   
                 </div>
-              </div><br><div class="card text-center">
+              </div><br><div class="card text-center text-white bg-warning mb-3">
                 <div class="card-header">
-                  Sede
+                  Sede <i class="fas fa-id-badge"></i>
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Modulo Sede</h5>
                   <p class="card-text">Accede a las funcionalidades del usuario SEDE.</p>
-                  <a href="#" class="btn btn-primary">Seleccionar!</a>
+                  
+                  <a href="#" class="btn btn-danger">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
                   

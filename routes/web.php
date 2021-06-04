@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CentralController;
 use App\Http\Controllers\USedeController;
 use App\Http\Controllers\EntradaProductoController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::get('/', function () {
     return view('empleado.create');
 });
 */
-
+Route::resource('users', UserController::class)->names('admin.users');
 Route::resource('empleado', EmpleadoController::class);
 Route::resource('sede', SedeController::class);
 Route::resource('producto', ProductoController::class);

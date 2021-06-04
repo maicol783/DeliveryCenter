@@ -16,31 +16,11 @@ class TodosSeeder extends Seeder
      */
     public function run()
     {
-        $useradmin=user::create([
+         User::create([
             'name'=> 'U Admin',
             'email'=> 'admin@gmail.com',
-            'password'=> Hash::make('1234'),
-            'tipo'=> '1',
-            'codigo' => 'Admin1',
+            'password'=> Hash::make('12345678'),
+        ])->assignRole('Admin');
 
-        ]);
-
-        $useradmin=user::create([
-            'name'=> 'U CENTRAl',
-            'email'=> 'central@gmail.com',
-            'password'=> Hash::make('1234'),
-            'tipo'=> '2',
-            'codigo' => 'Central1',
-
-        ]);
-
-        $useradmin=user::create([
-            'name'=> 'U Sede',
-            'email'=> 'sede@gmail.com',
-            'password'=> Hash::make('1234'),
-            'tipo'=> '3',
-            'codigo' => 'sede1',
-
-        ]);
     }
 }

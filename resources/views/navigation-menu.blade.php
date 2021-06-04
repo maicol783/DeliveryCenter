@@ -97,7 +97,9 @@
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Ajustes de perfil') }}
+                                <i class="fas fa-user-cog"></i>
+                                {{ __(' Ajustes de perfil') }}
+                               
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -115,6 +117,7 @@
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          onclick="event.preventDefault();
                                                 this.closest('form').submit();">
+                                                <i class="fas fa-sign-out-alt"></i>
                                     {{ __('Cerrar sesion') }}
                                 </x-jet-dropdown-link>
                             </form>

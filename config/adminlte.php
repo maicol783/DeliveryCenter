@@ -65,11 +65,11 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
+    'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_desc' => true,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -187,7 +187,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dashboard',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -231,17 +231,7 @@ return [
             'can'  => 'manage-blog',
         ],
 
-        ['header' => 'CONFIGURACIÓN DE CUENTA'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        
         /*[
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
@@ -281,6 +271,11 @@ return [
             ],
         ],*/
         ['header' => 'NAVEGA'],
+        [
+            'text'       => 'Empleados',
+            'icon'       => 'fas fa-users fa-fw',
+            'route'      => 'admin.users.index',
+        ],
         [
             'text'       => 'Empleados',
             'icon'       => 'fas fa-users',
