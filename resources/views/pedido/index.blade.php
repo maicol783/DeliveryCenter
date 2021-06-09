@@ -8,10 +8,11 @@
 
 
 <div class="table-responsive">
-
+  @can('pedido.create')
   <div class="d-flex">
    
     <a class="btn btn-success" href="{{ url('pedido/create') }}">Nuevo Pedido</a>
+    @endcan
     </div>
     <br>
 

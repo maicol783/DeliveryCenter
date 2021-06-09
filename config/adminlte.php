@@ -275,22 +275,27 @@ return [
             'text'       => 'Usuarios',
             'icon'       => 'fas fa-users fa-fw',
             'route'      => 'admin.users.index',
-            'can'       => 'admin.users.index'
         ],
         [
             'text'       => 'Empleados',
             'icon'       => 'fas fa-users',
             'route'        => 'empleado.index',
+            'can'       => 'empleado.index',
+
         ],
         [
             'text'       => 'Sedes',
             'icon'       => 'fas fa-laptop-house',
             'route'      => 'sede.index',
+            'can'       => 'sede.index',
+            
         ],
         [
             'text'       => 'Productos',
             'icon'       => 'fas fa-tags',
             'route'      => 'producto.index',
+            'can'       => 'producto.index',
+            
             /*'submenu' => [
                 [
                     'text' => 'Gestiónar productos',
@@ -308,45 +313,56 @@ return [
             'text'       => 'Informes',
             'icon'       => 'fas fa-paste',
             'route'      => 'informe.index',
+            'can'       => 'producto.index',
         ],
         [
             'text'       => 'Pedidos',
             'icon'       => 'fas fa-cart-arrow-down',
+            'can'       => 'pedido.index',
             'submenu' => [
                 [
                     'text' => 'Todos',
                     'url'  => '/pedido',
+                    'can'       => 'pedido.todos',
                     'icon_color' => 'yellow',
                 ],
                 [
                     'text' => 'En espera',
                     'url'  => 'pedidos/espera',
                     'icon_color' => 'cyan',
+                    'can'       => 'pedido.index',
                 ],
                 [
                     'text' => 'Confirmados',
                     'url'  => 'pedidos/confirmado',
                     'icon_color' => 'cyan',
+                    'can'       => 'pedido.index',
+                    
+                    
                 ],
                 [
                     'text' => 'Inconvenientes',
                     'url'  => 'pedidos/inconvenientes',
                     'icon_color' => 'orange',
+                    'can'       => 'pedido.index',
                 ],
                 [
                     'text' => 'Enviados',
                     'url'  => 'pedidos/enviado',
                     'icon_color' => 'cyan',
+                    'can'       => 'pedido.index',
                 ],
                 [
                     'text' => 'Entregados',
                     'url'  => 'pedidos/entregado',
                     'icon_color' => 'green',
+                    'can'       => 'pedido.index',
                 ],
                 [
                     'text' => 'Cancelados',
                     'url'  => 'pedidos/cancelado',
                     'icon_color' => 'red',
+                    'can'       => 'pedido.index',
                 ],
             ],
         ],
@@ -354,6 +370,7 @@ return [
             'text'       => 'Entradas',
             'icon'       => 'fas fa-truck-loading',
             'route'      => 'entradaproducto.index',
+            'can'       => 'entradaproducto.index',
             
         ],
     ],
