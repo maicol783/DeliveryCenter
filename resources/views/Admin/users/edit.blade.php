@@ -3,7 +3,7 @@
 @section('title','DeliveryCenter')
 
 @section('content_header')
-<h1>Asigancion de Roles</h1>
+<h1>Asignación de Roles</h1>
 @stop
 
 @section('content')

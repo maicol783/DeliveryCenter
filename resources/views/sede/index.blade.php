@@ -25,7 +25,7 @@
     <thead class="">
         <tr>
             <th class="text-center">Nombre</th>
-            <th class="text-center">Direccion</th>
+            <th class="text-center">Dirección</th>
             <th class="text-center">Barrio</th>
             <th class="text-center">Municipio</th>
             <th class="text-center">Estado</th>
@@ -78,11 +78,11 @@
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
+      <a class="page-link" href="#" tabindex="-1">Atrás</a>
     </li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item">
-      <a class="page-link" href="#">Next</a>
+      <a class="page-link" href="#">Adelante</a>
     </li>
   </ul>
 </nav>
@@ -101,7 +101,7 @@
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, eliminar!',
+  confirmButtonText: '¡Sí, eliminar!',
   cancelButtonText: '¡Cancelar!'
 }).then((result) => {
   if (result.value) {

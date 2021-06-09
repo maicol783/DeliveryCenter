@@ -38,7 +38,7 @@
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, crear!',
+  confirmButtonText: '¡Sí, crear!',
   cancelButtonText: '¡Cancelar!'
 }).then((result) => {
   if (result.value) {
