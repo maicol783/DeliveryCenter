@@ -331,19 +331,21 @@ return [
                     'url'  => 'pedidos/espera',
                     'icon_color' => 'cyan',
                     'can'       => 'pedido.index',
+                    'icon_color' => 'grey',
                 ],
                 [
                     'text' => 'Confirmados',
                     'url'  => 'pedidos/confirmado',
-                    'icon_color' => 'cyan',
+                    'icon_color' => 'green',
                     'can'       => 'pedido.index',
                     
                     
+                    'icon_color' => 'maroon',
                 ],
                 [
                     'text' => 'Inconvenientes',
                     'url'  => 'pedidos/inconvenientes',
-                    'icon_color' => 'orange',
+                    'icon_color' => 'red',
                     'can'       => 'pedido.index',
                 ],
                 [

@@ -30,10 +30,6 @@
 <input class="form-control" type="email" name="Correo" id="Correo" value="{{ isset($empleado->correo)?$empleado->correo:'' }}">
 <br>
 
-<label for="Contraseña">Contraseña</label>
-<input class="form-control" type="text" name="Contraseña" id="Contraseña" value="{{ isset($empleado->contraseña)?$empleado->contraseña:'' }}">
-<br>
-
 <label for="Grupo_sanguineo">Grupo sanguineo</label>
 <input class="form-control" type="text" name="Grupo_sanguineo" id="Grupo_sanguineo" value="{{ isset($empleado->grupo_sanguineo)?$empleado->grupo_sanguineo:'' }}">
 <br>
@@ -46,18 +42,6 @@
     <option value="{{ $valor->id_sede }}" selected>{{ $valor->nombre_sede }}</option>
     @else
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
-    @endif
-    @endforeach
-</select>
-<br>
-
-<label for="Id_rol">Rol</label>
-<select  class="form-control" name="Id_rol" id="Id_rol">
-    @foreach($rol as $valor)
-    @if($valor->id_rol == $empleado->id_rol )
-    <option value="{{ $valor->id_rol }}" selected>{{ $valor->nombre_rol }}</option>
-    @else
-    <option value="{{ $valor->id_rol }}">{{ $valor->nombre_rol }}</option>
     @endif
     @endforeach
 </select>
@@ -81,14 +65,6 @@
     @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
     @endif
-    @endforeach
-</select>
-<br>
-
-<label for="Id_rol">Rol</label>
-<select  class="form-control" name="Id_rol" id="Id_rol">
-    @foreach($rol as $valor)
-    <option value="{{ $valor->id_rol }}">{{ $valor->nombre_rol }}</option>
     @endforeach
 </select>
 <br>

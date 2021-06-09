@@ -54,7 +54,7 @@
             @endcan
             
             |
-            <form action="{{ url('/producto/'.$producto->id_producto) }}" class="formulario-eliminar" method="post"> 
+            <form action="{{ url('/producto/'.$producto->id_producto) }}" class="formulario-eliminar" method="post">
             @csrf  
        
                 {{ method_field('DELETE') }} 

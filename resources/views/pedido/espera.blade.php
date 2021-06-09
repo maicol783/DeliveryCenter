@@ -2,6 +2,7 @@
 @section('title', 'Espera')
 @section('content_header')
     <h1>Pedidos espera</h1>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
@@ -46,7 +47,7 @@
                   @endif
                 @endforeach
               </select>
-              <button type="submit" style="margin-top: 8px;" class="btn btn-success btn-xs">Actualizar</button>
+              <button type="submit" style="margin-top: 8px;" class="btn btn-success btn-sm">Actualizar</button>
             </form>
             </td>
             <td class="text-center">{{ $pedido->documento_cliente }}</td>
@@ -56,8 +57,7 @@
             <td class="text-center">{{ $pedido->telefono_cliente }}</td>
             <td class="text-center">{{ $pedido->total }}</td>
             <td class="text-center">
-              
-            <a type="button" class="btn btn-primary" href="/pedidos/espera?id={{ $pedido->id_pedido }}">
+            <a type="button" href="/pedidos/espera?id={{ $pedido->id_pedido}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Detalle
             </a>
             </td>
@@ -65,40 +65,60 @@
     @endforeach
 
       </tbody>
+      
 
   </table>
   
 </div>
-
 @if(count($productos) > 0)
-    <div class="row">
-      <div class="col">
-        <table class="table text-center">
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($productos as $producto)
-              <tr>
-              <td>{{$producto->nombre_producto}}</td>
-              <td>{{$producto->cantidad_c}}</td>
-              <td>{{$producto->valor_producto}}</td>
-              <td>{{$producto->valor_producto * $producto->cantidad_c}}</td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalle producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        </div>
-@endif
 
+        <div class="modal-body">
+        
+            <div class="row">
+              <div class="col">
+                <table class="table text-center">
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($productos as $producto)
+                      <tr>
+                      <td>{{$producto->nombre_producto}}</td>
+                      <td>{{$producto->cantidad_c}}</td>
+                      <td>{{$producto->valor_producto}}</td>
+                      <td>{{$producto->valor_producto * $producto->cantidad_c}}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
 @section('js')
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  
 <script>
 
 $('.formulario-estado').submit(function(e){

@@ -31,10 +31,8 @@
             <th class="text-center">Celular</th>
             <th class="text-center">Telefono</th>
             <th class="text-center">Correo</th>
-            <th class="text-center">Contraseña</th>
             <th class="text-center">Grupo sanguineo</th>
             <th class="text-center" style= "padding-right: 25px; padding-left: 25px;">Sede</th>
-            <th class="text-center">Rol</th>
             <th class="text-center">Estado</th>
             <th class="text-center">Opciones</th>
         </tr>
@@ -51,10 +49,8 @@
             <td class="text-center">{{ $empleado->celular }}</td>
             <td class="text-center">{{ $empleado->telefono }}</td>
             <td class="text-center">{{ $empleado->correo }}</td>
-            <td class="text-center">{{ $empleado->contraseña }}</td>
             <td class="text-center">{{ $empleado->grupo_sanguineo }}</td>
             <td class="text-center">{{ $empleado->sedeEmpleado->nombre_sede }}</td>
-            <td class="text-center">{{ $empleado->rolEmpleado->nombre_rol }}</td>
             <td class="text-center">
               @if($empleado->estatus == 1)
                 <button type="button" class="btn btn-sm btn-success">Activo</button>

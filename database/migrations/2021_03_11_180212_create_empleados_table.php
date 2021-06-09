@@ -22,7 +22,6 @@ class CreateEmpleadosTable extends Migration
             $table->string('celular',20);
             $table->string('telefono',20);
             $table->string('correo',45)->unique();
-            $table->string('contraseña',30);
             $table->string('grupo_sanguineo',10);
             $table->integer('id_sede')->unsigned();
             $table->foreign('id_sede')->references('id_sede')->on('sedes');
