@@ -36,7 +36,6 @@ Route::resource('informe', InformeController::class);
 Route::resource('pedido', PedidoController::class);
 
 Route::resource('entradaproducto', EntradaProductoController::class);
-Auth::routes();
 
 /*Route::get('/', function () {
     return Inertia::render('login', [
@@ -51,3 +50,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Auth::routes();
