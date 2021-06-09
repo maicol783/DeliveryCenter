@@ -321,12 +321,12 @@ return [
                 [
                     'text' => 'En espera',
                     'url'  => 'pedidos/espera',
-                    'icon_color' => 'cyan',
+                    'icon_color' => 'purple',
                 ],
                 [
                     'text' => 'Confirmados',
                     'url'  => 'pedidos/confirmado',
-                    'icon_color' => 'cyan',
+                    'icon_color' => 'maroon',
                 ],
                 [
                     'text' => 'Inconvenientes',
