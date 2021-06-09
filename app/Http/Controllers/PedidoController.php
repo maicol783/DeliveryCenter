@@ -7,6 +7,8 @@ use App\Models\Pedido\Pedido;
 use App\Models\Sede\Sede;
 use App\Models\Producto\Producto;
 use App\Models\Estado\Estado;
+use App\Models\DetallePedido\DetallePedido;
+use DB;
 
 class PedidoController extends Controller
 {
@@ -17,9 +19,131 @@ class PedidoController extends Controller
      */
     public function index(Request $request)
     {
-        $buscarporpedido = $request->get('buscarporpedido');
-        $datos['pedidos'] = Pedido::where('id_pedido','like','%'.$buscarporpedido.'%')->paginate(10);
-        return view('pedido.index', $datos,compact('buscarporpedido'));
+        $datos = Pedido::all();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('pedido.index' ,compact("productos", "datos", "estados"));
+    }
+
+    public function listarInconvenientes(Request $request)
+    {
+        $datos = Pedido::where("id_estado", "=", "5")->get();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('pedido.inconvenientes' ,compact("productos", "datos", "estados"));
+    }
+
+    public function listarEspera(Request $request)
+    {
+        $datos = Pedido::where("id_estado", "=", "1")->get();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('pedido.espera' ,compact("productos", "datos", "estados"));
+    }
+
+    public function listarCancelado(Request $request)
+    {
+        $datos = Pedido::where("id_estado", "=", "2")->get();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('pedido.cancelado' ,compact("productos", "datos", "estados"));
+    }
+
+    public function listarConfirmado(Request $request)
+    {
+        $datos = Pedido::where("id_estado", "=", "3")->get();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('pedido.confirmado' ,compact("productos", "datos", "estados"));
+    }
+
+    public function listarEnviado(Request $request)
+    {
+        $datos = Pedido::where("id_estado", "=", "4")->get();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('pedido.enviado' ,compact("productos", "datos", "estados"));
+    }
+
+    public function listarEntregado(Request $request)
+    {
+        $datos = Pedido::where("id_estado", "=", "7")->get();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('pedido.entregado' ,compact("productos", "datos", "estados"));
+    }
+
+    public function actualizarEstado(Request $request){
+
+        $datos = $request->all();
+        $pedido = Pedido::find($request->input("id_estado"));
+        $estado = $request->input('nuevo_estado');
+        $pedido->update(["id_estado" => $estado]);
+        $producto = [];
+        
+        if($estado == "2"){
+            $producto = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $request->input("id_estado"))
+            ->get();
+
+            foreach($producto as $value){
+                $producto = Producto::find($value->id_producto);
+                $producto ->update(["existencias" => $producto->existencias + $value->cantidad_c]);
+            }
+        }
+
+        //dd($estado);
+        return redirect()->back();
     }
 
     /**
@@ -43,7 +167,53 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosPedido = $request->all();
+        $carbon = new \Carbon\Carbon();
+        $actualFecha = $carbon->format('Y-m-d');
+
+            try{
+                DB::beginTransaction();
+                $pedido = Pedido::create([
+                    "fecha"=>$actualFecha,
+                    "id_sede"=>$datosPedido["id_sede"],
+                    "id_estado"=>$datosPedido["id_estado"],
+                    "documento_cliente"=>$datosPedido["documento_cliente"],
+                    "nombre_cliente"=>$datosPedido["nombre_cliente"],
+                    "apellido_cliente"=>$datosPedido["apellido_cliente"],
+                    "direccion_cliente"=>$datosPedido["direccion_cliente"],
+                    "telefono_cliente"=>$datosPedido["telefono_cliente"],
+                    "total"=>$this->calcular_precio($datosPedido["producto"],$datosPedido["cantidad"])
+        
+                    ]);
+
+                foreach($datosPedido["producto"] as $key => $valor){
+                        DetallePedido::create([
+                            "id_producto"=>$valor,
+                            "id_pedido"=>$pedido->id_pedido,
+                            "cantidad"=>$datosPedido["cantidad"][$key]
+                        ]);
+                        $prod = Producto::find($valor);
+                        $prod->update(["existencias"=>$prod->existencias - $datosPedido["cantidad"][$key]]);
+
+                }
+
+                DB::commit();
+                return redirect("pedido")->with('mensaje','PedidoCrear');
+                }catch(\Exception $e){
+                    DB::rollback();
+                    return redirect("pedido/create")->with('mensaje','PedidoNoCrear');
+                }
+                       
+    }
+
+    public function calcular_precio($productos, $cantidades)
+    {
+        $precio = 0;
+        foreach($productos as $key=> $valor){
+            $producto = Producto::find($valor);
+            $precio += ($producto->valor_producto * $cantidades[$key]);
+        }
+        return $precio;
     }
 
     /**

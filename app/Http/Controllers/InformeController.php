@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pedido\Pedido;
+use App\Models\Sede\Sede;
+use App\Models\Producto\Producto;
+use App\Models\Estado\Estado;
+use App\Models\DetallePedido\DetallePedido;
+use DB;
 
 class InformeController extends Controller
 {
@@ -11,9 +17,19 @@ class InformeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('informe.index');
+    public function index(Request $request)
+    {  
+        $datos = Pedido::where("id_estado", "=", "7")->get();
+        $id = $request -> input("id");
+        $estados = Estado::all();
+        $productos = [];
+        if($id != null){
+            $productos = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
+            ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
+            ->where("detalle_pedidos.id_pedido", $id)
+            ->get();
+        }
+        return view('informe.index' ,compact("productos", "datos", "estados"));
     }
 
     /**

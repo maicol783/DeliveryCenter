@@ -11,19 +11,15 @@
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
-    <form action="#" method="post">
+    <form action="/pedido" class="formulario_crear" method="post">
         @csrf
         <div class="row">
             <div class="col-6">
                 <div class="card">
                     <div class="card-head">
-                    <h4 class="text-center">Información de pedido</h4>
+                    <h4 style="margin: 20px 1px 1px 1px;" class="text-center">Información de pedido</h4>
                     </div>
                     <div class="row card-body">
-                        <div class="form-group col-6">
-                            <label for="">Fecha</label>
-                            <input id="" class="form-control" type="date" name="fecha">
-                        </div>
                         <div class="form-group col-6">
                             <label for="">Sede</label>
                             <select onchange="cargar_productos(this)" name="id_sede" class="form-control" id="sedes">
@@ -34,15 +30,7 @@
                             </select>
                         </div>
                         <div class="form-group col-6">
-                            <label for="">Estado de pedido</label>
-                            <select name="id_estado" class="form-control">
-                            <option value="">Seleccione...</option>
-                                @foreach($estados as $estado)
-                                    <option value="{{ $estado->id_estado }}">{{ $estado->nombre_estado }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-6">
+                            <input id="" class="form-control" type="hidden" value="1" name="id_estado">
                             <label for="">Documento</label>
                             <input id="" class="form-control" type="text" name="documento_cliente">
                         </div>
@@ -64,15 +52,19 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="">Total</label>
-                            <input id="precio_total" readonly class="form-control" type="number" name="total" value="0">
+                            <input id="precio_total" readonly class="form-control" type="number" name="total" >
                         </div>
+                    </div>
+                    <div class="col-12">
+                        <button style="margin: 0px 0px 10px 1px;" type="submit" class="btn btn-success btm-block">Guardar</button>
+                        <a class="btn btn-success float-right" href="{{ url('/pedido/') }}">Atras</a>
                     </div>
                 </div>
             </div>
             <div class="col-6">
                 <div class="card">
                     <div class="card-head">
-                    <h4 class="text-center">Agregar productos</h4>
+                    <h4 style="margin: 20px 1px 1px 1px;" class="text-center">Agregar productos</h4>
                     </div>
                     <div class="row card-body">
                         <div class="form-group col-6">
@@ -83,14 +75,14 @@
                         </div>
                         <div class="form-group col-3">
                             <label for="">Cantidad</label>
-                            <input type="number" class="form-control" value="0" id="cantidad">
+                            <input type="number" class="form-control" id="cantidad">
                         </div>
                         <div class="form-group col-3">
                             <label for="">Precio</label>
-                            <input id="precio" type="number" class="form-control" readonly value="0">
+                            <input id="precio" type="number" class="form-control" readonly>
                         </div>
                         <div class="col-12">
-                            <button onclick="agregar_producto()" type="button" class="btn btn-success float-right">Agregar</button>
+                            <button onclick="agregar_producto(), limpiar()" type="button" class="btn btn-success float-right">Agregar</button>
                         </div>
                     </div>
                     <table class="table">
@@ -110,18 +102,33 @@
                 </div>
             </div>      
         </div>
+
     </form>
     @section('js')
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
+
+            let cantidades = 0;
+            let subtotal = 0;
+
             $(document).ready(function(){
-                $("select").select2();
-            })
+                $("select.form-control").select2();
+            });
 
             function colocar_precio(e){
                 let precio = $("#producto option:selected").attr("precio");
                 $("#precio").val(precio);
+                let id = $(e).val();
+                $.ajax({
+                    url:'/traer_cantidad/'+id,
+                    type:'get',
+                    dataType:'json'
+                }).done(respuesta=>{
+                    cantidades = respuesta.existencias;
+                    console.log(cantidades);
+                }).fail(q=>console.log(q))
             }
 
             function cargar_productos(e){
@@ -132,9 +139,10 @@
                     type:'get',
                     dataType:'json'
                 }).done(respuesta=>{
-                    respuesta.map(r => $("#producto").append(`<option precio="${r.valor_producto}" value="${r.id_producto}">${r.nombre_producto}</option>`));
+                    respuesta.map(r => $("#producto").append(`<option exist="${r.existencias}" precio="${r.valor_producto}" value="${r.id_producto}">${r.nombre_producto}</option>`));
                 }).fail(q=>console.log(q))
             }
+
         
             function agregar_producto(){
                 let producto_id = $("#producto option:selected").val();
@@ -142,41 +150,85 @@
                 let cantidad = $("#cantidad").val();
                 let precio = $("#precio").val();
                 
-
-                if(cantidad>0 && precio>0){
-                    
-                    $("#tblProductos").append(`
-                        <tr>
-                            <td>
-                                <input type="hidden" name="producto[]" value="${producto}"/>
-                                <input type="hidden" name="cantidad[]" value="${cantidad}"/>
-                                ${producto_text }
-                            </td>
-                            <td>
-                                ${cantidad }
-                            </td>
-                            <td>
-                                ${precio }
-                            </td>
-                            <td>
-                                ${parseInt(cantidad)*parseInt(precio) }
-                            </td>
-                            <td>
-                                <button class="btn btn-danger">Quitar</button>
-                            </td>
-                        </tr>                    
-                    `);
-                    let precio_total = $("#precio_total").val() || 0;
-                    $("#precio_total").val(parseInt(precio_total) + (parseInt(cantidad) * parseInt(precio)));
-                }else{
+                
+                if($("#tr-"+producto_id).length){
                     Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Agregue los datos correctamente!',
-                    })
+                            type: 'error',
+                            title: 'Error',
+                            text: 'El producto ya existe!',
+                        });                   
+                }else{
+            
+                    if(cantidad>0 && precio>0) {
+                        if(cantidad<=cantidades){
+                            $("#tblProductos").append(`
+                                <tr id="tr-${producto_id}">
+                                    <td>
+                                        <input type="hidden" name="producto[]" value="${producto_id}"/>
+                                        <input type="hidden" id="cantidad-${producto}" name="cantidad[]" value="${cantidad}"/>
+                                        ${producto_text }
+                                    </td>
+                                    <td style ="width:114px;" id="td-${producto_id}">
+                                    <input class="form-control text-center" id="editable" onchange="nuevaCantidad()"  contenteditable type="number" value="${cantidad}"></td>
+                                    <td>
+                                        ${precio}
+                                    </td>
+                                    <td id="subTotal">
+                                        <input type="hidden" id="acuTotal" name="" value="${subtotal}"/>
+                                        ${parseInt(precio)*parseInt(cantidad)}
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" onclick="eliminar_producto(${producto_id}, $('#acuTotal').val())">Quitar</button>
+                                    </td>
+                                </tr>                    
+                            `);
+                        }else{
+                            Swal.fire(
+                                'Error!',
+                                'No hay existencias suficientes, revise de nuevo.',
+                                'warning'
+                            );
+                        }
+                    }else{
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Error',
+                            text: 'Debe llenar todos los campos!',
+                        });
+                    }
                 }
             }
+
+            function nuevaCantidad(){
+                let total = 0;
+                let precio = $("#precio").val();
+                let cantidad = $('#editable').val();
+                total += parseInt(precio)*parseInt(cantidad);
+                subtotal += $('#subTotal').html(parseInt(total));
+                let precio_total = $("#precio_total").val() || 0;
+                $("#precio_total").val(total);
+                console.log(typeof total);
+            }
+
+            function eliminar_producto(id,subtotal){
+                $("#tr-"+id).remove();
+                let precio_total = $("#precio_total").val() || 0;
+                $("#precio_total").val(parseInt(precio_total) - subtotal);
+            }
+
+            function limpiar() {
+                $("#cantidad").val(0);
+            }  
         </script>
-    @stop
+@if(Session('mensaje') == 'PedidoNoCrear')
+    <script>
+        Swal.fire({
+            type: 'error',
+            title: 'Error...',
+            text: 'Debes ingresar todos los datos!'
+        })
+    </script>
+@endif
+@stop
 
 @stop

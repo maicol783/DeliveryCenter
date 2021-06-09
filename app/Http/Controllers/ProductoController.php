@@ -17,9 +17,8 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         //$datos['productos'] = Producto::paginate(7);
-        $buscarporproducto = $request->get('buscarporproducto');
-        $datos['productos'] = Producto::where('nombre_producto','like','%'.$buscarporproducto.'%')->orWhere('valor_producto','like','%'.$buscarporproducto.'%')->paginate($this::PAGINACION);
-        return view('producto.index', $datos, compact('buscarporproducto'));
+        $datos['productos'] = Producto::all();
+        return view('producto.index', $datos);
     }
 
     /**

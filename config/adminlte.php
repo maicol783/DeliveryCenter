@@ -312,12 +312,49 @@ return [
         [
             'text'       => 'Pedidos',
             'icon'       => 'fas fa-cart-arrow-down',
-            'route'      => 'pedido.index',
+            'submenu' => [
+                [
+                    'text' => 'Todos',
+                    'url'  => '/pedido',
+                    'icon_color' => 'yellow',
+                ],
+                [
+                    'text' => 'En espera',
+                    'url'  => 'pedidos/espera',
+                    'icon_color' => 'cyan',
+                ],
+                [
+                    'text' => 'Confirmados',
+                    'url'  => 'pedidos/confirmado',
+                    'icon_color' => 'cyan',
+                ],
+                [
+                    'text' => 'Inconvenientes',
+                    'url'  => 'pedidos/inconvenientes',
+                    'icon_color' => 'orange',
+                ],
+                [
+                    'text' => 'Enviados',
+                    'url'  => 'pedidos/enviado',
+                    'icon_color' => 'cyan',
+                ],
+                [
+                    'text' => 'Entregados',
+                    'url'  => 'pedidos/entregado',
+                    'icon_color' => 'green',
+                ],
+                [
+                    'text' => 'Cancelados',
+                    'url'  => 'pedidos/cancelado',
+                    'icon_color' => 'red',
+                ],
+            ],
         ],
         [
             'text'       => 'Entradas',
             'icon'       => 'fas fa-truck-loading',
             'route'      => 'entradaproducto.index',
+            
         ],
     ],
 

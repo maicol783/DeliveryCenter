@@ -35,13 +35,26 @@ Route::resource('sede', SedeController::class);
 Route::resource('producto', ProductoController::class);
 Route::resource('informe', InformeController::class);
 Route::resource('pedido', PedidoController::class);
-
 Route::resource('entradaproducto', EntradaProductoController::class);
 Route::get('traer_productos/{id}', function ($id) {
     $produc = Producto::where('id_sede','=', $id)->get();
     return response()->json($produc);
 });
-    
+Route::get('traer_cantidad/{id}', function ($id) {
+    $prod = Producto::find($id);
+    return response()->json($prod);
+});
+Route::post('pedidos/nuevo_estado', [PedidoController::class, 'actualizarEstado']);
+Route::post('nuevo_estado', [PedidoController::class, 'actualizarEstado']);
+//Route::resource('pedido/inconvenientes', PedidoController::class)->only('listarInconvenientes')->name('listarInconvenientes');
+Route::get('pedidos/inconvenientes', [PedidoController::class, 'listarInconvenientes']);
+Route::get('pedidos/cancelado', [PedidoController::class, 'listarCancelado']);
+Route::get('pedidos/confirmado', [PedidoController::class, 'listarConfirmado']);
+Route::get('pedidos/entregado', [PedidoController::class, 'listarEntregado']);
+Route::get('pedidos/enviado', [PedidoController::class, 'listarEnviado']);
+Route::get('pedidos/espera', [PedidoController::class, 'listarEspera']);
+//Route::get('pedido', [PedidoController::class, 'index']);
+//Route::get('pedido/create', [PedidoController::class, 'create']);
 Auth::routes();
 
 /*Route::get('/', function () {

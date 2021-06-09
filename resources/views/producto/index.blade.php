@@ -13,10 +13,6 @@
   @can('sede.create')
 <a class="btn btn-success " href="{{ url('producto/create') }}">Nuevo producto</a>
 @endcan
-<form class="d-flex mx-auto float-right">
-    <input name="buscarporproducto"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporproducto }}">
-    <button class="btn btn-outline-success" type="submit">Buscar</button>
-</form>
 </div>
 <br>
 
@@ -72,17 +68,6 @@
     </tbody>
 
 </table>
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
 </div>
 
 @section('js')

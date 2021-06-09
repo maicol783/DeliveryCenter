@@ -1,19 +1,13 @@
 @extends('adminlte::page')
-@section('title', 'Pedidos')
+@section('title', 'Cancelados')
 @section('content_header')
-    <h1>Pedidos</h1>
+    <h1>Pedidos cancelados</h1>
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
 
 
 <div class="table-responsive">
-
-  <div class="d-flex">
-   
-    <a class="btn btn-success" href="{{ url('pedido/create') }}">Nuevo Pedido</a>
-    </div>
-    <br>
 
   <table class="table" style="width: 100%">
 
@@ -40,10 +34,7 @@
             <td class="text-center">{{ $pedido->fecha }}</td>
             <td class="text-center">{{ $pedido->sedePedido->nombre_sede }}</td>
             <td class="text-center" style="width: 150px">
-            <form action="nuevo_estado" class="formulario-estado" method="POST">
-            @csrf
-              <input type="hidden" value="{{$pedido->id_pedido}}" name="id_estado">
-              <select name="nuevo_estado" class="form-control form-control-sm"  id="">
+              <select name="nuevo_estado" class="form-control form-control-sm" readonly  id="">
                 @foreach($estados as $value)
                   @if($pedido->id_estado == $value->id_estado)
                   <option value="{{ $value->id_estado }}" selected>{{ $value->nombre_estado }}</option>
@@ -52,8 +43,6 @@
                   @endif
                 @endforeach
               </select>
-              <button type="submit" style="margin-top: 8px;" class="btn btn-success btn-xs">Actualizar</button>
-            </form>
             </td>
             <td class="text-center">{{ $pedido->documento_cliente }}</td>
             <td class="text-center">{{ $pedido->nombre_cliente }}</td>
@@ -63,7 +52,7 @@
             <td class="text-center">{{ $pedido->total }}</td>
             <td class="text-center">
               
-            <a type="button" class="btn btn-primary" href="/pedido?id={{ $pedido->id_pedido }}">
+            <a type="button" class="btn btn-primary" href="/pedidos/cancelado?id={{ $pedido->id_pedido }}">
               Detalle
             </a>
             </td>
@@ -124,43 +113,6 @@ $('.formulario-estado').submit(function(e){
     }
   })
 });
+@stop
+@stop
     
-     </script>
-@if(Session('mensaje') == 'PedidoEliminar')
-<script>
-Swal.fire(
-  '¡Eliminado!',
-  'El usuario se ha eliminado correctamente.',
-  'success'
-)
-</script>
-@endif
-@if(Session('mensaje') == 'EmpleadoModificar')
-<script>
-Swal.fire(
-  '¡Editado!',
-  'El usuario se ha editado correctamente.',
-  'success'
-)
-</script>
-@endif
-@if(Session('mensaje') == 'EmpleadoCrear')
-<script>
-Swal.fire(
-  '¡Creado!',
-  'El usuario se ha creado correctamente.',
-  'success'
-)
-</script>
-@endif
-@if(Session('mensaje') == 'PedidoCrear')
-<script>
-Swal.fire(
-  '¡Creado!',
-  'El pedido se ha creado correctamente.',
-  'success'
-)
-</script>
-@endif
-@stop
-@stop

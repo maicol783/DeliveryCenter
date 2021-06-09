@@ -1,19 +1,13 @@
 @extends('adminlte::page')
-@section('title', 'Pedidos')
+@section('title', 'Espera')
 @section('content_header')
-    <h1>Pedidos</h1>
+    <h1>Pedidos espera</h1>
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
 
 
 <div class="table-responsive">
-
-  <div class="d-flex">
-   
-    <a class="btn btn-success" href="{{ url('pedido/create') }}">Nuevo Pedido</a>
-    </div>
-    <br>
 
   <table class="table" style="width: 100%">
 
@@ -63,7 +57,7 @@
             <td class="text-center">{{ $pedido->total }}</td>
             <td class="text-center">
               
-            <a type="button" class="btn btn-primary" href="/pedido?id={{ $pedido->id_pedido }}">
+            <a type="button" class="btn btn-primary" href="/pedidos/espera?id={{ $pedido->id_pedido }}">
               Detalle
             </a>
             </td>
@@ -124,43 +118,7 @@ $('.formulario-estado').submit(function(e){
     }
   })
 });
+</script>
+@stop
+@stop
     
-     </script>
-@if(Session('mensaje') == 'PedidoEliminar')
-<script>
-Swal.fire(
-  '¡Eliminado!',
-  'El usuario se ha eliminado correctamente.',
-  'success'
-)
-</script>
-@endif
-@if(Session('mensaje') == 'EmpleadoModificar')
-<script>
-Swal.fire(
-  '¡Editado!',
-  'El usuario se ha editado correctamente.',
-  'success'
-)
-</script>
-@endif
-@if(Session('mensaje') == 'EmpleadoCrear')
-<script>
-Swal.fire(
-  '¡Creado!',
-  'El usuario se ha creado correctamente.',
-  'success'
-)
-</script>
-@endif
-@if(Session('mensaje') == 'PedidoCrear')
-<script>
-Swal.fire(
-  '¡Creado!',
-  'El pedido se ha creado correctamente.',
-  'success'
-)
-</script>
-@endif
-@stop
-@stop
