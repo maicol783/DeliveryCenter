@@ -12,10 +12,18 @@
 <div class="d-flex">
 <a class="btn btn-success" href="{{ url('empleado/create') }}">Nuevo empleado</a>
 
-<form class="d-flex mx-auto float-right">
-    <input name="buscarporempleado"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporempleado }}">
-    <button class="btn btn-outline-success" type="submit">Buscar</button>
-</form>
+<div class="col-xl-8">
+        <form action="{{ route('empleado.index') }}" method="get">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <input  class="form-control" name="texto" value="{{ $texto  }}" type="search" placeholder="Ingrese aquí" aria-label="Search">
+            </div>
+            <div class="col-auto">
+              <input type="submit" name="" value="Busca el producto" class="btn btn-outline-success">
+            </div>
+          </div>
+        </form>
+  </div>
 </div>
 <br>
 
@@ -80,20 +88,10 @@
     </tbody>
 
 </table>
-
 </div>
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+<div class="card-footer mr-auto" style="background-color: #f4f6f9;">
+    {{ $empleados->links() }}
+</div>
 
 
 @section('js')

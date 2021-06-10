@@ -14,15 +14,17 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    const PAGINACION = 10;
     public function index(Request $request)
     {
         //variable que va a usar el modelo para tomar los datos de la base de datos y pasarlos an index
         
         //$datos['empleados'] = Empleado::paginate(7);
-        $buscarporempleado = $request->get('buscarporempleado');
-        $datos['empleados'] = Empleado::where('primer_nombre','like','%'.$buscarporempleado.'%')->orWhere('documento','like','%'.$buscarporempleado.'%')->orWhere('documento','like','%'.$buscarporempleado.'%')->paginate($this::PAGINACION);
-        return view('empleado.index', $datos,compact('buscarporempleado'));
+        $texto = trim($request->get('texto'));
+        $empleados = Empleado::where('primer_nombre','like','%'.$texto.'%')
+        ->orWhere('documento','like','%'.$texto.'%')
+        ->orWhere('correo','like','%'.$texto.'%')
+        ->paginate(2);
+        return view('empleado.index',compact('texto','empleados'));
     }
 
     /**
