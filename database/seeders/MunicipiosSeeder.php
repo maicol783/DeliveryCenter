@@ -19,7 +19,7 @@ class MunicipiosSeeder extends Seeder
         ]);
 
         Municipio::create([
-            'nombre_municipio'=> 'Bello',
+            'nombre_municipio'=> 'El Retiro',
         ]);
     }
 }

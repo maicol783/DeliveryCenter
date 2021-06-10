@@ -313,7 +313,7 @@ return [
             'text'       => 'Informes',
             'icon'       => 'fas fa-paste',
             'route'      => 'informe.index',
-            'can'       => 'producto.index',
+            'can'       => 'informe.index',
         ],
         [
             'text'       => 'Pedidos',

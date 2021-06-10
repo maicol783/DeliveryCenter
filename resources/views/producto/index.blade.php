@@ -24,8 +24,8 @@
             <th class="text-center">Existencias</th>
             <th class="text-center">Precio</th>
             <th class="text-center">Sede</th>
-            <th class="text-center">Estado</th>
-            <th class="text-center">Opciones</th>
+            <th class="text-center">Estado</th> @can('sede.edit')
+            <th class="text-center">Opciones</th>@endcan
         </tr>
     </thead>
 
@@ -43,23 +43,25 @@
                 <button type="button" class="btn btn-sm btn-danger">Inactivo</button>
               @endif
             </td>
+            @can('sede.edit')
             <td class="text-center " >
             <div class="d-flex justify-content-center">
-              @can('sede.edit')
+              
             <a class="btn btn-warning btn-sm mx-2" href="{{ url('/producto/'.$producto->id_producto.'/edit') }}">
             
                 Editar
                 
             </a>
-            @endcan
+           
             
             |
+             @endcan
             <form action="{{ url('/producto/'.$producto->id_producto) }}" class="formulario-eliminar" method="post">
             @csrf  
-       
+       @can('producto.delete')
                 {{ method_field('DELETE') }} 
                 <input  class="btn btn-danger btn-sm mx-2" type="submit"  value="Borrar">
-                
+                @endcan
             </form>
             </div>
             </td>

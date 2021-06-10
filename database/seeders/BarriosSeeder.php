@@ -21,5 +21,9 @@ class BarriosSeeder extends Seeder
         Barrio::create([
             'nombre_barrio'=> 'Castilla',
         ]);
+
+        Barrio::create([
+            'nombre_barrio'=> 'ElRetiro',
+        ]);
     }
 }

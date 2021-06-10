@@ -35,10 +35,10 @@ class RolesSeeder extends Seeder
         Permission::create(['name'=>'entradaproducto.delete'])->syncRoles([$role3]);
         Permission::create(['name'=>'entradaproducto.create'])->syncRoles([$role3]);
 
-        Permission::create(['name'=>'informe.index'])->syncRoles([$role1,]);
-        Permission::create(['name'=>'informe.edit'])->syncRoles([$role1, ]);
-        Permission::create(['name'=>'informe.form'])->syncRoles([$role1,]);
-        Permission::create(['name'=>'informe.create'])->syncRoles([$role1,]);
+        Permission::create(['name'=>'informe.index'])->syncRoles([$role1]);
+        Permission::create(['name'=>'informe.edit'])->syncRoles([$role1]);
+        Permission::create(['name'=>'informe.form'])->syncRoles([$role1]);
+        Permission::create(['name'=>'informe.create'])->syncRoles([$role1]);
 
         Permission::create(['name'=>'pedido.index'])->syncRoles([$role2, $role3]);
         Permission::create(['name'=>'pedido.edit'])->syncRoles([$role2, $role3]);
