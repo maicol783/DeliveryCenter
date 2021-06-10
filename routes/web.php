@@ -29,13 +29,13 @@ Route::get('/', function () {
     return view('empleado.create');
 });
 */
-Route::resource('users', UserController::class)->names('admin.users');
-Route::resource('empleado', EmpleadoController::class);
-Route::resource('sede', SedeController::class);
-Route::resource('producto', ProductoController::class);
+Route::resource('users', UserController::class)->middleware('can:admin.users.index')->names('admin.users');
+Route::resource('empleado', EmpleadoController::class)->middleware('can:admin.users.index');
+Route::resource('sede', SedeController::class)->middleware('can:sede.index');
+Route::resource('producto', ProductoController::class)->middleware('can:producto.index');
 Route::resource('informe', InformeController::class);
-Route::resource('pedido', PedidoController::class);
-Route::resource('entradaproducto', EntradaProductoController::class);
+Route::resource('pedido', PedidoController::class)->middleware('can:pedido.index');
+Route::resource('entradaproducto', EntradaProductoController::class)->middleware('can:entradaproducto.index');
 Route::get('traer_productos/{id}', function ($id) {
     $produc = Producto::where('id_sede','=', $id)->get();
     return response()->json($produc);
