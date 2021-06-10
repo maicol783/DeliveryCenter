@@ -13,12 +13,13 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    const PAGINACION = 10;
+ 
     public function index(Request $request)
     {
-        //$datos['productos'] = Producto::paginate(7);
-        $datos['productos'] = Producto::all();
-        return view('producto.index', $datos);
+        $texto = trim($request->get('texto'));
+        $datos['productos'] = Producto::where("nombre_producto", "LIKE", '%'.$texto."%")
+        ->paginate(6);
+        return view('producto.index', $datos, compact('texto'));
     }
 
     /**

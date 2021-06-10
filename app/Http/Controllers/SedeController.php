@@ -14,13 +14,13 @@ class SedeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    const PAGINACION = 10;
     public function index(Request $request)
     {
-        //$datos['sedes'] = Sede::paginate(5);
-        $buscarporsede = $request->get('buscarporsede');
-        $datos['sedes'] = Sede::where('nombre_sede','like','%'.$buscarporsede.'%')->orWhere('direccion_sede','like','%'.$buscarporsede.'%')->paginate($this::PAGINACION);
-        return view('sede.index', $datos, compact('buscarporsede'));
+        $texto = trim($request->get('texto'));
+        $datos['sedes'] = Sede::where('nombre_sede','like','%'.$texto.'%')
+        ->orWhere('direccion_sede','like','%'.$texto.'%')
+        ->paginate(6);
+        return view('sede.index', $datos, compact('texto'));
     }
 
     /**

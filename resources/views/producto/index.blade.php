@@ -11,8 +11,21 @@
 
 <div class="d-flex"> 
   @can('sede.create')
-<a class="btn btn-success " href="{{ url('producto/create') }}">Nuevo producto</a>
+<a class="btn btn-success " href="{{ url('producto/create') }}">Nuevo producto - {{ Auth::user()->codigo }}</a>
 @endcan
+
+<div class="col-xl-8">
+        <form action="{{ route('producto.index') }}" method="get">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <input  class="form-control" name="texto" value="{{ $texto  }}" type="search" placeholder="Ingrese aquí" aria-label="Search">
+            </div>
+            <div class="col-auto">
+              <input type="submit" name="" value="Busca el producto" class="btn btn-outline-success">
+            </div>
+          </div>
+        </form>
+  </div>
 </div>
 <br>
 
@@ -70,6 +83,9 @@
     </tbody>
 
 </table>
+<div class="card-footer mr-auto" style="background-color: #f4f6f9;">
+    {{ $productos->links() }}
+</div>
 </div>
 
 @section('js')

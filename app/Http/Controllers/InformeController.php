@@ -9,6 +9,7 @@ use App\Models\Producto\Producto;
 use App\Models\Estado\Estado;
 use App\Models\DetallePedido\DetallePedido;
 use DB;
+use PDF;
 
 class InformeController extends Controller
 {
@@ -19,6 +20,7 @@ class InformeController extends Controller
      */
     public function index(Request $request)
     {  
+        $acu = 0;
         $datos = Pedido::where("id_estado", "=", "5")->get();
         $id = $request -> input("id");
         $estados = Estado::all();
@@ -29,7 +31,22 @@ class InformeController extends Controller
             ->where("detalle_pedidos.id_pedido", $id)
             ->get();
         }
-        return view('informe.index' ,compact("productos", "datos", "estados"));
+        return view('informe.index' ,compact("productos", "datos", "estados", 'acu'));
+    }
+
+    public function informesPDF(Request $request)
+    {  
+        $acu = 0;
+        $datos = Pedido::where("id_estado", "=", "5")->get();
+        return view('informe.informesPDF' ,compact("datos", "acu"));
+    }
+
+    public function descargarPDF(Request $request)
+    {
+        $datos = Pedido::where("id_estado", "=", "5")->get();
+
+        return PDF::loadView('informe.informesPDF', compact("datos"))
+        ->stream();
     }
 
     /**

@@ -13,10 +13,18 @@
   @can('sede.create')
 <a class="btn btn-success" href="{{ url('sede/create') }}">Nueva sede</a>
 @endcan
-<form class="d-flex mx-auto float-right">
-    <input name="buscarporsede"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporsede }}">
-    <button class="btn btn-outline-success" type="submit">Buscar</button>
-</form>
+<div class="col-xl-8">
+        <form action="{{ route('sede.index') }}" method="get">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <input  class="form-control" name="texto" value="{{ $texto  }}" type="search" placeholder="Ingrese aquí" aria-label="Search">
+            </div>
+            <div class="col-auto">
+              <input type="submit" name="" value="Buscar la sede" class="btn btn-outline-success">
+            </div>
+          </div>
+        </form>
+  </div>
 </div>
 <br>
 
@@ -75,17 +83,8 @@
     </tbody>
 
 </table>
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Atrás</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Adelante</a>
-    </li>
-  </ul>
-</nav>
+<div class="mr-auto" style="background-color: #f4f6f9;">
+    {{ $sedes->links() }}
 </div>
 
 @section('js')

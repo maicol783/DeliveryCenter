@@ -13,13 +13,18 @@
   @can('entradaproducto.create')
 <a class="btn btn-success" href="{{ url('entradaproducto/create') }} " >Nueva entrada</a>
   @endcan
-  <div class="col-5">
-        <div class="input-group">
-            <input type="text" class="form-control" id="texto" placeholder="Ingrese nombre">
-            <div class="input-group-append"><span class="btn btn-outline-success">Buscar</span></div>
-        </div>
-        <div id="resultados" class="bg-light border"></div>
-    </div>
+  <div class="col-xl-8">
+        <form action="{{ route('entradaproducto.index') }}" method="get">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <input  class="form-control" name="texto" value="{{ $texto  }}" type="search" placeholder="Ingrese aquí" aria-label="Search">
+            </div>
+            <div class="col-auto">
+              <input type="submit" name="" value="Busca el producto" class="btn btn-outline-success">
+            </div>
+          </div>
+        </form>
+  </div>
 </div>
 <br>
 

@@ -9,11 +9,6 @@
 
 <div class="table-responsive">
 
-  <div class="d-flex">
-
-  
-  </div>
-
   <table class="table table-striped table-bordered table-hover" style="width: 100%">
 
       <thead class="">
@@ -28,13 +23,13 @@
               <th class="text-center">Dirección</th>
               <th class="text-center">Telefono</th>
               <th class="text-center">Total</th>
-              <th class="text-center">Opciones</th>
           </tr>
       </thead>
 
       <tbody>
+      
       @foreach($datos as $pedido)
-        <tr>
+        <tr id="tr-{{$pedido->id_pedido}}">
             <td class="text-center">{{ $pedido->id_pedido }}</td>
             <td class="text-center">{{ $pedido->fecha }}</td>
             <td class="text-center">{{ $pedido->sedePedido->nombre_sede }}</td>
@@ -45,12 +40,8 @@
             <td class="text-center">{{ $pedido->direccion_cliente }}</td>
             <td class="text-center">{{ $pedido->telefono_cliente }}</td>
             <td class="text-center">{{ $pedido->total }}</td>
-            <td class="text-center">
+            
             <input type="hidden" value="{{ $acu = $acu + $pedido->total }}">
-            <a type="button" class="btn btn-primary" href="/informe?id={{ $pedido->id_pedido }}">
-              Detalle
-            </a>
-            </td>
         </tr>
     @endforeach
 
@@ -70,57 +61,10 @@
           <p class="card-text">El total de ventas es de {{ $acu }}</p>
       </div>
   </div>
+  </div>
+  
 </div>
-
-@if(count($productos) > 0)
-    <div class="row">
-      <div class="col">
-        <table class="table text-center">
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($productos as $producto)
-              <tr>
-              <td>{{$producto->nombre_producto}}</td>
-              <td>{{$producto->cantidad_c}}</td>
-              <td>{{$producto->valor_producto}}</td>
-              <td>{{$producto->valor_producto * $producto->cantidad_c}}</td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-        </div>
-        </div>
-@endif
-
 @section('js')
 
-<script>
-
-$('.formulario-estado').submit(function(e){
-  e.preventDefault();
-  Swal.fire({
-  title: '¿Estás seguro de actualizar el estado?',
-  text: "¡Lo puedes volver a cambiar!",
-  icon: 'question',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, actualizar!',
-  cancelButtonText: '¡Cancelar!'
-  }).then((result) => {
-    if (result.value) {
-    this.submit();
-    }
-  })
-});
-    
-     </script>
 @stop
 @stop
