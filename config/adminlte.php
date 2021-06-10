@@ -68,7 +68,6 @@ return [
     'usermenu_header' => true,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => true,
     'usermenu_profile_url' => true,
 
     /*
@@ -227,7 +226,7 @@ return [
         
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
+            'url'  => '/blog',
             'can'  => 'manage-blog',
         ],
 
@@ -275,6 +274,7 @@ return [
             'text'       => 'Usuarios',
             'icon'       => 'fas fa-users fa-fw',
             'route'      => 'admin.users.index',
+            'can'       => 'admin.users.index',
         ],
         [
             'text'       => 'Empleados',
@@ -329,7 +329,6 @@ return [
                 [
                     'text' => 'En espera',
                     'url'  => 'pedidos/espera',
-                    'icon_color' => 'cyan',
                     'can'       => 'pedido.index',
                     'icon_color' => 'grey',
                 ],
@@ -340,7 +339,6 @@ return [
                     'can'       => 'pedido.index',
                     
                     
-                    'icon_color' => 'maroon',
                 ],
                 [
                     'text' => 'Inconvenientes',
@@ -357,13 +355,13 @@ return [
                 [
                     'text' => 'Entregados',
                     'url'  => 'pedidos/entregado',
-                    'icon_color' => 'green',
+                    'icon_color' => 'olive',
                     'can'       => 'pedido.index',
                 ],
                 [
                     'text' => 'Cancelados',
                     'url'  => 'pedidos/cancelado',
-                    'icon_color' => 'red',
+                    'icon_color' => 'orange',
                     'can'       => 'pedido.index',
                 ],
             ],
