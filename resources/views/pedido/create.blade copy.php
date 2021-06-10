@@ -82,7 +82,7 @@
                             <input id="precio" type="number" class="form-control" readonly>
                         </div>
                         <div class="col-12">
-                            <button onclick="agregar_producto(), limpiar()" type="button" class="btn btn-success float-right">Agregar</button>
+                            <button onclick="agregar_producto(), limpiar(), nuevaCantidad()" type="button" class="btn btn-success float-right">Agregar</button>
                         </div>
                     </div>
                     <table class="table">
@@ -143,7 +143,7 @@
 
         
             function agregar_producto(){
-                let producto_id = $("#producto option:selected").val();
+                let = producto_id = $("#producto option:selected").val();
                 let producto_text = $("#producto option:selected").text();
                 let cantidad = $("#cantidad").val();
                 let precio = $("#precio").val();
@@ -163,25 +163,21 @@
                                 <tr id="tr-${producto_id}">
                                     <td>
                                         <input type="hidden" name="producto[]" value="${producto_id}"/>
-                                        <input type="hidden" name="cantidad[]" value="${cantidad}"/>
                                         ${producto_text }
                                     </td>
                                     <td style ="width:114px;" >
-                                        ${cantidad}
+                                    <input class="form-control text-center" onchange="nuevaCantidad()" id="cantidad-${producto_id}" name="cantidad[]" type="number" value="${cantidad}"></td>
                                     <td>
                                         ${precio}
                                     </td>
-                                    <td>
+                                    <td id="subTotal">
                                         ${parseInt(precio)*parseInt(cantidad)}
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger" onclick="eliminar_producto(${producto_id}, ${parseInt(precio)*parseInt(cantidad)})">Quitar</button>
+                                        <button type="button" class="btn btn-danger" onclick="eliminar_producto(${producto_id}, $('#acuTotal').val())">Quitar</button>
                                     </td>
                                 </tr>                    
                             `);
-                            let precio_total = $("#precio_total").val() || 0;
-                            $("#precio_total").val(parseInt(precio_total) + parseInt(precio)*parseInt(cantidad));
-                            console.log(precio_total)
                         }else{
                             Swal.fire(
                                 'Error!',
@@ -197,6 +193,17 @@
                         });
                     }
                 }
+            }
+
+            function nuevaCantidad(){
+                let precio = $("#precio").val();
+                let cantidad = parseInt($('#cantidad-'+producto_id).val());
+                $('#cantidad-'+producto_id).val(cantidad);
+                total = parseInt(precio) * parseInt(cantidad);
+                subtotal += $('#subTotal').html(parseInt(total));
+                let precio_total = $("#precio_total").val() || 0;
+                $("#precio_total").val(total);
+                console.log(cantidad);
             }
 
             function eliminar_producto(id,subtotal){

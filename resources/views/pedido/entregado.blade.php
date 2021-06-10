@@ -33,22 +33,7 @@
             <td class="text-center">{{ $pedido->id_pedido }}</td>
             <td class="text-center">{{ $pedido->fecha }}</td>
             <td class="text-center">{{ $pedido->sedePedido->nombre_sede }}</td>
-            <td class="text-center" style="width: 150px">
-            <form action="nuevo_estado" class="formulario-estado" method="POST">
-            @csrf
-              <input type="hidden" value="{{$pedido->id_pedido}}" name="id_estado">
-              <select name="nuevo_estado" class="form-control form-control-sm"  id="">
-                @foreach($estados as $value)
-                  @if($pedido->id_estado == $value->id_estado)
-                  <option value="{{ $value->id_estado }}" selected>{{ $value->nombre_estado }}</option>
-                  @else
-                  <option value="{{ $value->id_estado }}">{{ $value->nombre_estado }}</option>
-                  @endif
-                @endforeach
-              </select>
-              <button type="submit" style="margin-top: 8px;" class="btn btn-success btn-xs">Actualizar</button>
-            </form>
-            </td>
+            <td class="text-center" style="width: 150px">{{ $pedido->estadoPedido->nombre_estado }}</td>
             <td class="text-center">{{ $pedido->documento_cliente }}</td>
             <td class="text-center">{{ $pedido->nombre_cliente }}</td>
             <td class="text-center">{{ $pedido->apellido_cliente }}</td>

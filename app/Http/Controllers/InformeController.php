@@ -19,7 +19,7 @@ class InformeController extends Controller
      */
     public function index(Request $request)
     {  
-        $datos = Pedido::where("id_estado", "=", "7")->get();
+        $datos = Pedido::where("id_estado", "=", "5")->get();
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];

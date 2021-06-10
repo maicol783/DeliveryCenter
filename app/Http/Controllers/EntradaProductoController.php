@@ -18,12 +18,21 @@ class EntradaProductoController extends Controller
     const PAGINACION = 10;
     public function index(Request $request)
     {
-        $buscarporentrada = $request->get('buscarporentrada');
-        $datos['entradas'] = EntradaProducto::join('productos', 'entrada_productos.id_producto', '=', 'productos.id_producto')
+        $datos = EntradaProducto::join('productos', 'entrada_productos.id_producto', '=', 'productos.id_producto')
         ->join('sedes', 'productos.id_sede', '=', 'sedes.id_sede')
-        ->get();
-        return view('entradaproducto.index', $datos,compact('buscarporentrada'));
+        ->paginate(6);
+        return view('entradaproducto.index',compact('datos'));
     }
+
+    public function buscador(Request $request)
+    {
+        $datos = EntradaProducto::join('productos', 'entrada_productos.id_producto', '=', 'productos.id_producto')
+        ->join('sedes', 'productos.id_sede', '=', 'sedes.id_sede')
+        ->where("productos.nombre_producto", "like", $request->texto."%")
+        ->paginate(6);
+        return view('entradaproducto.index',compact('datos'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -33,17 +33,7 @@
             <td class="text-center">{{ $pedido->id_pedido }}</td>
             <td class="text-center">{{ $pedido->fecha }}</td>
             <td class="text-center">{{ $pedido->sedePedido->nombre_sede }}</td>
-            <td class="text-center" style="width: 150px">
-              <select name="nuevo_estado" class="form-control form-control-sm" readonly  id="">
-                @foreach($estados as $value)
-                  @if($pedido->id_estado == $value->id_estado)
-                  <option value="{{ $value->id_estado }}" selected>{{ $value->nombre_estado }}</option>
-                  @else
-                  <option value="{{ $value->id_estado }}">{{ $value->nombre_estado }}</option>
-                  @endif
-                @endforeach
-              </select>
-            </td>
+            <td class="text-center" style="width: 150px">{{ $pedido->estadoPedido->nombre_estado }}</td>
             <td class="text-center">{{ $pedido->documento_cliente }}</td>
             <td class="text-center">{{ $pedido->nombre_cliente }}</td>
             <td class="text-center">{{ $pedido->apellido_cliente }}</td>

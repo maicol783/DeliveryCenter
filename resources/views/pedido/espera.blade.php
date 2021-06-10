@@ -57,7 +57,7 @@
             <td class="text-center">{{ $pedido->telefono_cliente }}</td>
             <td class="text-center">{{ $pedido->total }}</td>
             <td class="text-center">
-            <a type="button" href="/pedidos/espera?id={{ $pedido->id_pedido}}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <a type="button" href="/pedidos/espera?id={{ $pedido->id_pedido}}" class="btn btn-primary"data-bs-target="#exampleModal">
               Detalle
             </a>
             </td>
@@ -139,6 +139,15 @@ $('.formulario-estado').submit(function(e){
   })
 });
 </script>
+@if(Session('mensaje') == 'PedidoCrear')
+<script>
+Swal.fire(
+  '¡Creado!',
+  'El pedido se ha creado correctamente.',
+  'success'
+)
+</script>
+@endif
 @stop
 @stop
     

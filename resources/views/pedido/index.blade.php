@@ -154,14 +154,5 @@ Swal.fire(
 )
 </script>
 @endif
-@if(Session('mensaje') == 'PedidoCrear')
-<script>
-Swal.fire(
-  '¡Creado!',
-  'El pedido se ha creado correctamente.',
-  'success'
-)
-</script>
-@endif
 @stop
 @stop

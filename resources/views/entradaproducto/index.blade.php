@@ -11,12 +11,15 @@
 
 <div class="d-flex">
   @can('entradaproducto.create')
-<a class="btn btn-success" href="{{ url('entradaproducto/create') }}">Nueva entrada</a>
+<a class="btn btn-success" href="{{ url('entradaproducto/create') }} " >Nueva entrada</a>
   @endcan
-<form class="d-flex mx-auto float-right">
-    <input name="buscarporentrada"  style="width: 85%" class="form-control me-2" type="search" placeholder="Ingrese aquí" aria-label="Search" value="{{ $buscarporentrada }}">
-    <button class="btn btn-outline-success" type="submit">Buscar</button>
-</form>
+  <div class="col-5">
+        <div class="input-group">
+            <input type="text" class="form-control" id="texto" placeholder="Ingrese nombre">
+            <div class="input-group-append"><span class="btn btn-outline-success">Buscar</span></div>
+        </div>
+        <div id="resultados" class="bg-light border"></div>
+    </div>
 </div>
 <br>
 
@@ -31,7 +34,7 @@
     </thead>
 
     <tbody>
-    @foreach($entradas as $entrada)
+    @foreach($datos as $entrada)
         <tr>
             <td class="text-center">{{ $entrada->nombre_producto }}</td>
             <td class="text-center">{{ $entrada->nombre_sede }}</td>
@@ -41,20 +44,15 @@
     </tbody>
 
 </table>
-
+<div class="card-footer mr-auto" style="background-color: #f4f6f9;">
+    {{ $datos->links() }}
+  </div>
 </div>
+  
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav>
+
+
+
 
 
 @section('js')
@@ -106,6 +104,7 @@ Swal.fire(
   'success'
 )
 </script>
+
 @endif
 @stop
 @stop

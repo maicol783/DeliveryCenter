@@ -34,7 +34,7 @@ class PedidoController extends Controller
 
     public function listarInconvenientes(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "5")->get();
+        $datos = Pedido::where("id_estado", "=", "3")->get();
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -64,7 +64,7 @@ class PedidoController extends Controller
 
     public function listarCancelado(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "2")->get();
+        $datos = Pedido::where("id_estado", "=", "6")->get();
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -79,7 +79,7 @@ class PedidoController extends Controller
 
     public function listarConfirmado(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "3")->get();
+        $datos = Pedido::where("id_estado", "=", "2")->get();
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -109,7 +109,7 @@ class PedidoController extends Controller
 
     public function listarEntregado(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "7")->get();
+        $datos = Pedido::where("id_estado", "=", "5")->get();
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -130,7 +130,7 @@ class PedidoController extends Controller
         $pedido->update(["id_estado" => $estado]);
         $producto = [];
         
-        if($estado == "2"){
+        if($estado == "6"){
             $producto = Producto::select("productos.*","detalle_pedidos.cantidad as cantidad_c")
             ->join("detalle_pedidos", "productos.id_producto", "=", "detalle_pedidos.id_producto")
             ->where("detalle_pedidos.id_pedido", $request->input("id_estado"))
@@ -143,7 +143,19 @@ class PedidoController extends Controller
         }
 
         //dd($estado);
-        return redirect()->back();
+        if($estado == "1"){
+            return redirect("pedidos/espera");
+        }elseif($estado == "2"){
+            return redirect("pedidos/confirmado");
+        }elseif($estado == "3"){
+            return redirect("pedidos/inconvenientes");
+        }elseif($estado == "4"){
+            return redirect("pedidos/enviado");
+        }elseif($estado == "5"){
+            return redirect("pedidos/entregado");
+        }elseif($estado == "6"){
+            return redirect("pedidos/cancelado");
+        }
     }
 
     /**
@@ -198,7 +210,7 @@ class PedidoController extends Controller
                 }
 
                 DB::commit();
-                return redirect("pedido")->with('mensaje','PedidoCrear');
+                return redirect("pedidos/espera")->with('mensaje','PedidoCrear');
                 }catch(\Exception $e){
                     DB::rollback();
                     return redirect("pedido/create")->with('mensaje','PedidoNoCrear');
