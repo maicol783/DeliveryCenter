@@ -25,7 +25,7 @@ class CreatePedidosTable extends Migration
             $table->string('apellido_cliente',35);
             $table->string('direccion_cliente',25);
             $table->string('telefono_cliente',25);
-            $table->float('total', 8, 2);
+            $table->float('total', 15, 2);
             $table->timestamps();
         });
     }

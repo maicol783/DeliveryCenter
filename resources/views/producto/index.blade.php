@@ -11,7 +11,7 @@
 
 <div class="d-flex"> 
   @can('sede.create')
-<a class="btn btn-success " href="{{ url('producto/create') }}">Nuevo producto - {{ Auth::user()->codigo }}</a>
+<a class="btn btn-success " href="{{ url('producto/create') }}">Nuevo producto</a>
 @endcan
 
 <div class="col-xl-8">

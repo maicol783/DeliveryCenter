@@ -9,6 +9,7 @@ use App\Models\Producto\Producto;
 use App\Models\Estado\Estado;
 use App\Models\DetallePedido\DetallePedido;
 use DB;
+use Auth;
 
 class PedidoController extends Controller
 {
@@ -34,7 +35,22 @@ class PedidoController extends Controller
 
     public function listarInconvenientes(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "3")->get();
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
+        $datos = Pedido::where("id_estado", "=", "3")
+        ->where("id_sede", "=", $mostrarSede)
+        ->get();
+        }else{
+            $datos = Pedido::where("id_estado", "=", "3")      
+            ->get();
+        }
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -49,7 +65,22 @@ class PedidoController extends Controller
 
     public function listarEspera(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "1")->get();
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
+            $datos = Pedido::where("id_estado", "=", "1")
+            ->where("id_sede", "=", $mostrarSede)
+            ->get();
+        }else{
+            $datos = Pedido::where("id_estado", "=", "1")
+            ->get();
+        }
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -64,7 +95,22 @@ class PedidoController extends Controller
 
     public function listarCancelado(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "6")->get();
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
+        $datos = Pedido::where("id_estado", "=", "6")
+        ->where("id_sede", "=", $mostrarSede)
+        ->get();
+        }else{
+            $datos = Pedido::where("id_estado", "=", "6")
+            ->get();
+        }
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -79,7 +125,22 @@ class PedidoController extends Controller
 
     public function listarConfirmado(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "2")->get();
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
+            $datos = Pedido::where("id_estado", "=", "2")
+            ->where("id_sede", "=", $mostrarSede)
+            ->get();
+        }else{
+            $datos = Pedido::where("id_estado", "=", "2")
+        ->get();
+        }
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -94,7 +155,22 @@ class PedidoController extends Controller
 
     public function listarEnviado(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "4")->get();
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
+            $datos = Pedido::where("id_estado", "=", "4")
+            ->where("id_sede", "=", $mostrarSede)
+            ->get();
+        }else{
+            $datos = Pedido::where("id_estado", "=", "4")
+            ->get();
+        }
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -109,7 +185,22 @@ class PedidoController extends Controller
 
     public function listarEntregado(Request $request)
     {
-        $datos = Pedido::where("id_estado", "=", "5")->get();
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
+            $datos = Pedido::where("id_estado", "=", "5")
+            ->where("id_sede", "=", $mostrarSede)
+            ->get();
+        }else{
+            $datos = Pedido::where("id_estado", "=", "5")
+            ->get();
+        }
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto\Producto;
 use Illuminate\Http\Request;
 use App\Models\Sede\Sede;
+use Auth;
 
 class ProductoController extends Controller
 {
@@ -16,9 +17,26 @@ class ProductoController extends Controller
  
     public function index(Request $request)
     {
-        $texto = trim($request->get('texto'));
-        $datos['productos'] = Producto::where("nombre_producto", "LIKE", '%'.$texto."%")
-        ->paginate(6);
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
+            $texto = trim($request->get('texto'));
+            $datos['productos'] = Producto::where("id_sede", "=", $mostrarSede)
+            ->where("nombre_producto", "LIKE", '%'.$texto."%")
+            ->paginate(6);
+        }else{
+            $texto = trim($request->get('texto'));
+            $datos['productos'] = Producto::where("nombre_producto", "LIKE", '%'.$texto."%")
+            ->paginate(6);
+        }
+        
+        //dd($mostrarSede);
         return view('producto.index', $datos, compact('texto'));
     }
 

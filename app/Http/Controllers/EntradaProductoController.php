@@ -7,6 +7,7 @@ use App\Models\Sede\Sede;
 use App\Models\Producto\Producto;
 use Illuminate\Http\Request;
 use App\Http\Controllers;
+use Auth;
 
 class EntradaProductoController extends Controller
 {
@@ -18,11 +19,28 @@ class EntradaProductoController extends Controller
     const PAGINACION = 10;
     public function index(Request $request)
     {
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        if($mostrarSede != 0){
         $texto = trim($request->get('texto'));
         $datos = EntradaProducto::join('productos', 'entrada_productos.id_producto', '=', 'productos.id_producto')
         ->join('sedes', 'productos.id_sede', '=', 'sedes.id_sede')
         ->where("productos.nombre_producto", "LIKE", '%'.$texto."%")
+        ->where("productos.id_sede", "=", $mostrarSede)
         ->paginate(6);
+        }else{
+            $texto = trim($request->get('texto'));
+            $datos = EntradaProducto::join('productos', 'entrada_productos.id_producto', '=', 'productos.id_producto')
+            ->join('sedes', 'productos.id_sede', '=', 'sedes.id_sede')
+            ->where("productos.nombre_producto", "LIKE", '%'.$texto."%")
+            ->paginate(6);
+        }
         return view('entradaproducto.index',compact('datos', 'texto'));
     }
 
@@ -34,7 +52,15 @@ class EntradaProductoController extends Controller
      */
     public function create()
     {
-        $sede = Sede::all();
+        $mostrarSede = 0;
+        if( Auth::user()->codigo == 04){
+            $mostrarSede = 2;
+        }elseif( Auth::user()->codigo == 03){
+            $mostrarSede = 3;
+        }elseif( Auth::user()->codigo == 05){
+            $mostrarSede = 1;
+        }
+        $sede = Sede::where("id_sede", "=", $mostrarSede)->get();
         $producto = Producto::all();
         return view('entradaproducto.create', compact('sede','producto'));
     }
