@@ -32,8 +32,8 @@
         e.preventDefault();
 
     Swal.fire({
-  title: '¿Estas seguro de crear esta sede?',
-  text: "¡Podras eliminarla despues!",
+  title: '¿Estás seguro de crear esta sede?',
+  text: "¡Podrás eliminarla despues!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',

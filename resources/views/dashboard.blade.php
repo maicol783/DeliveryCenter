@@ -52,9 +52,9 @@
                   <a href="{{ url('sede')}}" class="btn btn-warning">Seleccionar!</a>
                 </div>
                 <div class="card-footer text-muted">
-                  @endcan
+                 
                 </div>
-              
+                @endcan
               <br>
               @can('Dashboard.Sede')
               <div class="card text-center text-white bg-warning mb-3">
@@ -65,7 +65,7 @@
                   <h5 class="card-title">Modulo Sede</h5>
                   <p class="card-text">Accede a las funcionalidades del usuario SEDE.</p>
                   
-                  <a href="{{ url('pedido/espera')}}" class="btn btn-danger">Seleccionar!</a>
+                  <a href="{{ url('pedidos/espera')}}" class="btn btn-danger">Seleccionar!</a>
                 </div>
                 
                 <div class="card-footer text-muted">

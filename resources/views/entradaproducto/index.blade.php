@@ -67,13 +67,13 @@
 $('.formulario-eliminar').submit(function(e){
   e.preventDefault();
   Swal.fire({
-  title: '¿Estas seguro de eliminar este empleado?',
+  title: '¿Estás seguro de eliminar este empleado?',
   text: "¡No lo puedes revertir!",
   icon: 'question',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, eliminar!',
+  confirmButtonText: '¡Sí, eliminar!',
   cancelButtonText: '¡Cancelar!'
 }).then((result) => {
   if (result.value) {
@@ -83,33 +83,14 @@ $('.formulario-eliminar').submit(function(e){
 });
     
      </script>
-@if(Session('mensaje') == 'EmpleadoEliminar')
+@if(Session('mensaje') == 'EntradaCrear')
 <script>
 Swal.fire(
-  '¡Eliminado!',
-  'El usuario se ha eliminado correctamente.',
+  '¡Entrada creada!',
+  'La entrada se ha registrado correctamente.',
   'success'
 )
 </script>
-@endif
-@if(Session('mensaje') == 'EmpleadoModificar')
-<script>
-Swal.fire(
-  '¡Editado!',
-  'El usuario se ha editado correctamente.',
-  'success'
-)
-</script>
-@endif
-@if(Session('mensaje') == 'EmpleadoCrear')
-<script>
-Swal.fire(
-  '¡Creado!',
-  'El usuario se ha creado correctamente.',
-  'success'
-)
-</script>
-
 @endif
 @stop
 @stop

@@ -101,13 +101,13 @@
 $('.formulario-eliminar').submit(function(e){
   e.preventDefault();
   Swal.fire({
-  title: '¿Estas seguro de eliminar este empleado?',
+  title: '¿Estás seguro de eliminar este empleado?',
   text: "¡No lo puedes revertir!",
   icon: 'question',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, eliminar!',
+  confirmButtonText: '¡Sí, eliminar!',
   cancelButtonText: '¡Cancelar!'
 }).then((result) => {
   if (result.value) {
@@ -121,7 +121,7 @@ $('.formulario-eliminar').submit(function(e){
 <script>
 Swal.fire(
   '¡Eliminado!',
-  'El usuario se ha eliminado correctamente.',
+  'El empleado se ha eliminado correctamente.',
   'success'
 )
 </script>
@@ -130,7 +130,7 @@ Swal.fire(
 <script>
 Swal.fire(
   '¡Editado!',
-  'El usuario se ha editado correctamente.',
+  'El empleado se ha editado correctamente.',
   'success'
 )
 </script>
@@ -139,7 +139,7 @@ Swal.fire(
 <script>
 Swal.fire(
   '¡Creado!',
-  'El usuario se ha creado correctamente.',
+  'El empleado se ha creado correctamente.',
   'success'
 )
 </script>
