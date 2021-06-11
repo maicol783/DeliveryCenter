@@ -21,13 +21,13 @@
         e.preventDefault();
 
     Swal.fire({
-  title: '¿Estas seguro de editar este empleado?',
+  title: '¿Estás seguro de editar este empleado?',
   text: "¡Puedes volver a editarlos!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, editar!',
+  confirmButtonText: '¡Sí, editar!',
   cancelButtonText: '¡Cancelar!'
 }).then((result) => {
   if (result.value) {

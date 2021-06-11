@@ -31,7 +31,7 @@ class TodosSeeder extends Seeder
         ])->assignRole('Central');
 
         User::create([
-            'name'=> 'U sedeFloresta',
+            'name'=> 'U sedeRetiro'  ,
             'email'=> 'sede@gmail.com',
             'password'=> Hash::make('12345678'),
             'codigo'=> '03'

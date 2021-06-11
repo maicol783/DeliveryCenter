@@ -32,13 +32,13 @@
         e.preventDefault();
 
     Swal.fire({
-  title: '¿Estas seguro de crear este producto?',
-  text: "¡Podras eliminarlo despues!",
+  title: '¿Estás seguro de crear este producto?',
+  text: "¡Podrás eliminarlo despues!",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: '¡Si, crear!',
+  confirmButtonText: '¡Sí, crear!',
   cancelButtonText: '¡Cancelar!'
 }).then((result) => {
   if (result.value) {

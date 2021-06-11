@@ -94,7 +94,7 @@
         e.preventDefault();
 
     Swal.fire({
-  title: '¿Estas seguro de eliminar esta sede?',
+  title: '¿Estás seguro de eliminar esta sede?',
   text: "¡No lo puedes revertir!",
   icon: 'question',
   showCancelButton: true,
