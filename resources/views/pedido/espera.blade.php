@@ -2,7 +2,6 @@
 @section('title', 'Espera')
 @section('content_header')
     <h1>Pedidos espera</h1>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 @stop
 @section('plugins.Sweetalert2', true)
 @section('content')
@@ -57,9 +56,13 @@
             <td class="text-center">{{ $pedido->telefono_cliente }}</td>
             <td class="text-center">{{ $pedido->total }}</td>
             <td class="text-center">
-            <a type="button" href="/pedidos/espera?id={{ $pedido->id_pedido}}" class="btn btn-primary"data-bs-target="#exampleModal">
-              Detalle
+            <input type="hidden" class="" id="identificador" value="{{ $pedido->id_pedido }}">
+            <a style="margin-bottom: 4px;border-top-width: 0px;" type="button" href="/pedidos/espera?id={{$pedido->id_pedido}}" class="btn btn-primary btn-sm">
+              Cargar
             </a>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Abrir
+            </button>
             </td>
         </tr>
     @endforeach
@@ -70,13 +73,14 @@
   </table>
   
 </div>
-@if(count($productos) > 0)
+
   <!-- Modal -->
+  @if(count($productos) > 0)
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Detalle producto</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Detalle del pedido</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -106,7 +110,7 @@
                 </table>
               </div>
             </div>
-          
+            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -115,6 +119,7 @@
     </div>
   </div>
   @endif
+ 
 @section('js')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

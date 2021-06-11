@@ -52,8 +52,6 @@ Route::get('pedidos/confirmado', [PedidoController::class, 'listarConfirmado']);
 Route::get('pedidos/entregado', [PedidoController::class, 'listarEntregado']);
 Route::get('pedidos/enviado', [PedidoController::class, 'listarEnviado']);
 Route::get('pedidos/espera', [PedidoController::class, 'listarEspera']);
-Route::get('informes_pdf', [InformeController::class, 'informesPDF']);
-Route::get('informes/descargar_PDF', [InformeController::class, 'descargarPDF']);
 
 //Route::get('pedido', [PedidoController::class, 'index']);
 //Route::get('pedido/create', [PedidoController::class, 'create']);

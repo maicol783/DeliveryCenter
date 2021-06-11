@@ -73,9 +73,13 @@
 <select class="form-control" name="Id_sede" id="Id_sede">
     @foreach($sede as $valor)
     @if($valor->id_sede == $empleado->id_sede )
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}" selected>{{ $valor->nombre_sede }}</option>
+    @endif
     @else
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endif
     @endif
     @endforeach
 </select>
@@ -111,8 +115,8 @@
 <br>
 @endif
                     </div>
-                    <input class="text-right btn btn-danger  btn-sm" type="submit" name="Enviar" value="Guardar datos">
-             <a class="text-right btn btn-warning  btn-sm" href="{{ url('/empleado/') }}">Atras</a>
+                    <input class="text-right btn btn-primary  btn-sm" type="submit" name="Enviar" value="Guardar datos">
+             <a class="text-right btn btn-primary  btn-sm" href="{{ url('/empleado/') }}">Atras</a>
                 </div>
             </div>
             

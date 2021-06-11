@@ -21,7 +21,11 @@ class InformeController extends Controller
     public function index(Request $request)
     {  
         $acu = 0;
-        $datos = Pedido::where("id_estado", "=", "5")->get();
+        $texto = trim($request->get('texto'));
+        $texto2 = trim($request->get('texto2'));
+        $datos = Pedido::where("id_estado", "=", "5")
+        ->whereBetween('fecha', [$texto, $texto2])
+        ->get();
         $id = $request -> input("id");
         $estados = Estado::all();
         $productos = [];
@@ -31,7 +35,7 @@ class InformeController extends Controller
             ->where("detalle_pedidos.id_pedido", $id)
             ->get();
         }
-        return view('informe.index' ,compact("productos", "datos", "estados", 'acu'));
+        return view('informe.index' ,compact("productos", "datos", "estados", 'acu', 'texto2', 'texto'));
     }
 
     public function informesPDF(Request $request)
