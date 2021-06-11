@@ -2,7 +2,9 @@
 <select onchange="cargar_productos(this)" class="form-control" name="id_sede" id="id_sede">
     <option value="">Seleccione una sede</option>
     @foreach($sede as $valor)
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endif
     @endforeach
 </select>
 <br>

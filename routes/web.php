@@ -37,7 +37,9 @@ Route::resource('informe', InformeController::class);
 Route::resource('pedido', PedidoController::class)->middleware('can:pedido.index');
 Route::resource('entradaproducto', EntradaProductoController::class)->middleware('can:entradaproducto.index');
 Route::get('traer_productos/{id}', function ($id) {
-    $produc = Producto::where('id_sede','=', $id)->get();
+    $produc = Producto::where('id_sede','=', $id)
+    ->where('estatus', '=', '1')
+    ->get();
     return response()->json($produc);
 });
 Route::get('traer_cantidad/{id}', function ($id) {
