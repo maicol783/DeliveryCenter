@@ -16,9 +16,13 @@
 <select class="form-control" name="Id_sede" id="Id_sede">
     @foreach($sede as $valor)
     @if($valor->id_sede == $producto->id_sede )
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}" selected>{{ $valor->nombre_sede }}</option>
+    @endif
     @else
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endif
     @endif
     @endforeach
 </select>
@@ -39,7 +43,9 @@
 <label for="Id_sede">Sede</label>
 <select class="form-control" name="Id_sede" id="Id_sede">
     @foreach($sede as $valor)
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endif
     @endforeach
 </select>
 <br>

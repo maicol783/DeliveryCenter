@@ -41,10 +41,13 @@
             <td class="text-center">{{ $pedido->telefono_cliente }}</td>
             <td class="text-center">{{ $pedido->total }}</td>
             <td class="text-center">
-              
-            <a type="button" class="btn btn-primary" href="/pedidos/entregado?id={{ $pedido->id_pedido }}">
-              Detalle
+            <input type="hidden" class="" id="identificador" value="{{ $pedido->id_pedido }}">
+            <a style="margin-bottom: 4px;border-top-width: 0px;" type="button" href="/pedidos/entregado?id={{$pedido->id_pedido}}" class="btn btn-primary btn-sm">
+              Cargar
             </a>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Abrir
+            </button>
             </td>
         </tr>
     @endforeach
@@ -56,33 +59,52 @@
 </div>
 
 @if(count($productos) > 0)
-    <div class="row">
-      <div class="col">
-        <table class="table text-center">
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($productos as $producto)
-              <tr>
-              <td>{{$producto->nombre_producto}}</td>
-              <td>{{$producto->cantidad_c}}</td>
-              <td>{{$producto->valor_producto}}</td>
-              <td>{{$producto->valor_producto * $producto->cantidad_c}}</td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalle del pedido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
+        <div class="modal-body">
+        
+            <div class="row">
+              <div class="col">
+                <table class="table text-center">
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                      <th>Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($productos as $producto)
+                      <tr>
+                      <td>{{$producto->nombre_producto}}</td>
+                      <td>{{$producto->cantidad_c}}</td>
+                      <td>{{$producto->valor_producto}}</td>
+                      <td>{{$producto->valor_producto * $producto->cantidad_c}}</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
         </div>
-@endif
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endif
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
 <script>
 

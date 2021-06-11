@@ -39,9 +39,13 @@
 <select class="form-control" name="Id_sede" id="Id_sede">
     @foreach($sede as $valor)
     @if($valor->id_sede == $empleado->id_sede )
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}" selected>{{ $valor->nombre_sede }}</option>
+    @endif
     @else
+    @if($valor->estatus == 1)
     <option value="{{ $valor->id_sede }}">{{ $valor->nombre_sede }}</option>
+    @endif
     @endif
     @endforeach
 </select>
