@@ -115,8 +115,8 @@
 <br>
 @endif
                     </div>
-                    <input class="text-right btn btn-danger  btn-sm" type="submit" name="Enviar" value="Guardar datos">
-             <a class="text-right btn btn-warning  btn-sm" href="{{ url('/empleado/') }}">Atras</a>
+                    <input class="text-right btn btn-primary  btn-sm" type="submit" name="Enviar" value="Guardar datos">
+             <a class="text-right btn btn-primary  btn-sm" href="{{ url('/empleado/') }}">Atras</a>
                 </div>
             </div>
             
